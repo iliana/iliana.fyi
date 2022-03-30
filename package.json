@@ -9,6 +9,7 @@
     "watch-tailwind": "tailwindcss -m -i styles.css -o static/styles.css --watch"
   },
   "dependencies": {
+    "@swc/core": "^1.2.161",
     "@tailwindcss/typography": "^0.5.2",
     "@trivago/prettier-plugin-sort-imports": "^3.2.0",
     "htm": "^3.1.0",
