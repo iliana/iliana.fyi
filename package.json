@@ -26,6 +26,7 @@
   },
   "prettier": {
     "printWidth": 120,
+    "proseWrap": "never",
     "htmlWhitespaceSensitivity": "ignore",
     "importOrder": [
       "^[./]"

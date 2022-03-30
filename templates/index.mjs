@@ -15,11 +15,12 @@ export default function Index() {
         >
           iliana etaoin
         </h1>
+
         <${LinkList}>
           <li>
             <a href="https://pronoun.is/xie/xer?or=she">
               xie/xer
-              <${SrOnly}>pronouns<//>
+              <${SrOnly}>${" "}pronouns<//>
             </a>
           </li>
           <li>
@@ -42,8 +43,23 @@ export default function Index() {
             <${LogoLink} logo=${IoLogoGithub} label="GitHub" href="https://github.com/iliana">@iliana<//>
           </li>
         <//>
+
         <${SkipNavContent}>
           <${Prose}>{{ section.content | safe }}<//>
+
+          <h2 className="sr-only">Blog</h2>
+          {% set blog = get_section(path="blog/_index.md") %}
+          <ul>
+            {% for page in blog.pages %}
+            <li className="text-sm lg:text-base xl:text-lg 2xl:text-xl my-3.5 lg:my-4 xl:my-5 2xl:my-6">
+              <time datetime="{{ page.date | date }}">{{ page.date | date(format="%B %e, %Y") }}</time>
+              <${SrOnly}>:<//>
+              <${Prose} noMargins className="prose-a:font-extrabold">
+                <a href="{{ page.path }}">{{ page.title }}</a>
+              <//>
+            </li>
+            {% endfor %}
+          </ul>
         <//>
       </main>
     <//>

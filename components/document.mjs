@@ -5,7 +5,7 @@ import { SkipNavLink } from "./skip-nav.mjs";
 
 export default function Base({ children }) {
   return html`
-    <html>
+    <html lang="en">
       <head>
         <meta charset="utf-8" />
         <title>
@@ -14,6 +14,7 @@ export default function Base({ children }) {
         </title>
         <link rel="icon" href="/netscape.gif" />
         <link rel="stylesheet" href="/styles.css" />
+        <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
         <${Script}
           f=${() => {
             (window.iliana = {
