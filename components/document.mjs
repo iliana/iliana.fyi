@@ -3,12 +3,15 @@ import { html } from "htm/preact";
 import { CgDarkMode } from "react-icons/cg/index.js";
 import { SkipNavLink } from "./skip-nav.mjs";
 
-export default function Base({ title, children }) {
+export default function Base({ children }) {
   return html`
     <html>
       <head>
         <meta charset="utf-8" />
-        <title>${title !== undefined ? html`<>{title} &mdash; iliana.fyi</>` : "iliana.fyi"}</title>
+        <title>
+          {% if section.title %}{{ section.title }} — {% endif %}{% if page.title %}{{ page.title }} — {% endif
+          %}iliana.fyi
+        </title>
         <link rel="icon" href="/netscape.gif" />
         <link rel="stylesheet" href="/styles.css" />
         <${Script}
