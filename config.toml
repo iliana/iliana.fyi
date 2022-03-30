@@ -1,0 +1,10 @@
+base_url = "https://iliana.fyi"
+title = "iliana.fyi"
+description = "iliana’s blog"
+generate_feed = true
+
+[markdown]
+highlight_code = true
+smart_punctuation = true
+
+[extra]

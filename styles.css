@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  a,
+  .tag-equiv-a {
+    @apply text-purple-600 dark:text-purple-400 font-medium underline;
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "scripts": {
+    "build": "node util/render-templates.mjs && tailwindcss -m -i styles.css -o static/styles.css && zola build",
+    "fix": "prettier -w ."
+  },
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.2",
+    "@trivago/prettier-plugin-sort-imports": "^3.2.0",
+    "htm": "^3.1.0",
+    "preact-render-to-string": "^5.1.20",
+    "prettier": "^2.6.1",
+    "react": "npm:@preact/compat@^17.0.3",
+    "react-dom": "npm:@preact/compat@^17.0.3",
+    "react-icons": "^4.3.1",
+    "tailwindcss": "^3.0.23"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "htmlWhitespaceSensitivity": "ignore",
+    "importOrder": [
+      "^[./]"
+    ]
+  }
+}
