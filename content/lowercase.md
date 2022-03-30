@@ -2,7 +2,7 @@
 title = "“Always lowercase”"
 +++
 
-I always write my name entirely lowercase or uppercase -- even in formal settings, and even at the beginnings of sentences. **I ask that you do the same.**
+I always write my name entirely lowercase or uppercase --- even in formal settings, and even at the beginnings of sentences. **I ask that you do the same.**
 
 There's a simple typographical reason: an uppercase `I` and a lowercase `l` look identical in many sans-serif fonts. And for many people, seeing my name with an initial capital letter results in misspellings and mispronunciation.
 
