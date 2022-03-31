@@ -8,6 +8,7 @@ export default function Base({ children }) {
     <html lang="en">
       <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
         <title>
           {% if section.title %}{{ section.title }} — {% endif %}{% if page.title %}{{ page.title }} — {% endif
           %}iliana.fyi
