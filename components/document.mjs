@@ -54,10 +54,9 @@ export default function Base({ children }) {
           f=${() => {
             const { c, s, m } = window.iliana;
             const button = document.getElementById("color-scheme-toggle");
-            const currentlyDark = c.contains("dark");
 
             const updateButton = () => {
-              button.title = button.ariaLabel = currentlyDark ? "Light mode" : "Dark mode";
+              button.title = button.ariaLabel = c.contains("dark") ? "Light mode" : "Dark mode";
             };
             updateButton();
 
@@ -67,13 +66,13 @@ export default function Base({ children }) {
             });
 
             button.addEventListener("click", () => {
+              s(true);
+              updateButton();
               try {
-                window.localStorage.setItem("color-scheme", currentlyDark ? "light" : "dark");
+                window.localStorage.setItem("color-scheme", c.contains("dark") ? "dark" : "light");
               } catch (e) {
                 // nothing
               }
-              s(true);
-              updateButton();
             });
             button.classList.remove("hidden");
           }}
