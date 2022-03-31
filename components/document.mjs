@@ -17,26 +17,28 @@ export default function Base({ children }) {
         <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
         <${Script}
           f=${() => {
-            (window.iliana = {
-              c: document.documentElement.classList,
-              m: window.matchMedia("(prefers-color-scheme: dark)"),
-              s: (explicit) => {
-                const { c, m } = window.iliana;
-                const localScheme = (() => {
-                  try {
-                    return window.localStorage.getItem("color-scheme");
-                  } catch (e) {
-                    return undefined;
-                  }
-                })();
-
-                if (explicit ? !c.contains("dark") : localScheme === "dark" || (localScheme !== "light" && m.matches)) {
-                  c.add("dark");
-                } else {
-                  c.remove("dark");
+            document.addEventListener("color-scheme-toggle", (event) => {
+              const c = document.documentElement.classList;
+              const localScheme = (() => {
+                try {
+                  return window.localStorage.getItem("color-scheme");
+                } catch (e) {
+                  return undefined;
                 }
-              },
-            }).s();
+              })();
+
+              if (
+                event.detail?.e === true
+                  ? !c.contains("dark")
+                  : localScheme === "dark" ||
+                    (localScheme !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches)
+              ) {
+                c.add("dark");
+              } else {
+                c.remove("dark");
+              }
+            });
+            document.dispatchEvent(new Event("color-scheme-toggle"));
           }}
         />
       </head>
@@ -52,22 +54,17 @@ export default function Base({ children }) {
         </div>
         <${Script}
           f=${() => {
-            const { c, s, m } = window.iliana;
+            const c = document.documentElement.classList;
             const button = document.getElementById("color-scheme-toggle");
-
-            const updateButton = () => {
+            const update = (e) => {
+              document.dispatchEvent(new CustomEvent("color-scheme-toggle", { detail: { e } }));
               button.title = button.ariaLabel = c.contains("dark") ? "Light mode" : "Dark mode";
             };
-            updateButton();
 
-            m.addEventListener("change", () => {
-              s();
-              updateButton();
-            });
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", update);
 
             button.addEventListener("click", () => {
-              s(true);
-              updateButton();
+              update(true);
               try {
                 window.localStorage.setItem("color-scheme", c.contains("dark") ? "dark" : "light");
               } catch (e) {
