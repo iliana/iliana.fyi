@@ -1,0 +1,62 @@
+Date: Tue, 11 Dec 2018 16:13:43 +0000
+From: iliana weller <ilianaw@buttslol.net>
+To: "Avery (GitHub Staff)" <support@github.com>
+Subject: Re: e30e/e98e
+User-Agent: Mutt/1.5.21 (2010-09-15)
+
+Actually, let me just be more blunt.
+
+I don't think people reported this repository because the name or
+description were disruptive; maybe that was the reason they gave staff,
+but I think they reported it because they interpret it as a waste of
+resources.
+
+I'm not interested in shortening the repository name to appease these
+people. I am willing to shorten the repository name to help resolve any
+*purely technical* concerns of GitHub staff provided sufficient reason
+for doing so. For instance, if you were to decrease the maximum length
+of a combined username + repository name, I would be willing to comply
+with that.
+
+But anybody can make repository names of this length still. The only
+reason mine was disabled was because it was popular enough to distract
+people who... do what? Use the Explore email?
+
+This repository turned into a really cool art project that a lot of
+people care about. The length of e's doesn't matter. But it's really sad
+that GitHub staff is bothering to listen to people who think that the
+repository doesn't have a serious purpose.
+
+--
+iliana weller <ilianaw@buttslol.net>
+
+On Tue, Dec 11, 2018 at 04:01:18PM +0000, iliana weller wrote:
+> > We would be interested in hearing more about the purpose of the project.
+>
+> https://linuxwit.ch/blog/2018/12/e98e/
+>
+> > Thanks for your offer to shorten the repository name – that should help reduce the distraction. We’ve re-enabled the repository for the next 24 hours to allow you to make that change.
+>
+> What exactly is your threshold for the repository name length, and why
+> is it not the limit you have in place (100 characters)?
+>
+> A request to shorten the repository name against an arbitrary rule is
+> not actionable.
+>
+> On Tue, Dec 11, 2018 at 03:10:53PM +0000, Avery (GitHub Staff) wrote:
+> > Hi iliana,
+> >
+> > Thanks for taking the time to write in about this. The e30e /eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee repository was disabled following reports of abuse of GitHub’s Terms of Service. Keep in mind, people use
+GitHub to learn, to work, and to be productive. Generating disruptive content on GitHub can go against our prohibition against spam. We would be interested in hearing more about the purpose of the project.
+> >
+> > Thanks for your offer to shorten the repository name – that should help reduce the distraction. We’ve re-enabled the repository for the next 24 hours to allow you to make that change. If, after 24 hours, the name is the same, we may need to re-disable the repository
+around this time tomorrow.
+> >
+> > Please let us know if you have any questions.
+> >
+> > All best,
+> >
+> > Avery
+>
+> --
+> iliana weller <ilianaw@buttslol.net>

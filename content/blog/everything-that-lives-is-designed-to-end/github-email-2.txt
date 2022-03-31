@@ -1,0 +1,28 @@
+Date: Tue, 11 Dec 2018 20:10:01 +0000
+From: iliana weller <ilianaw@buttslol.net>
+To: "Avery (GitHub Staff)" <support@github.com>
+Subject: Re: e30e/e98e
+User-Agent: Mutt/1.5.21 (2010-09-15)
+
+Unfortunately it's still not clear what GitHub considers to be short
+enough as you work to fix the UI issue.
+
+If you can provide a clear, unambiguous limit for a temporary name
+change I will be able to make the change.
+
+--
+iliana weller <ilianaw@buttslol.net>
+
+On Tue, Dec 11, 2018 at 08:00:54PM +0000, Avery (GitHub Staff) wrote:
+> Hi iliana,
+>
+> Thanks for the detailed reply, and we understand your frustration here.
+>
+> Your repository name has uncovered an issue with our UI that we’re currently working to correct. But to clarify, that issue is affecting the UI of other GitHub users who haven’t starred or otherwise interacted with the repository (outside of the Explore page and emails). As a result, we received a large number of
+reports from confused/affected users, which also impacted our ability to provide support to other users. I recognize I could’ve been more clear about that in my original reply, so I apologize for not having included more detail.
+>
+> While we work to correct the issue on our end, we’d appreciate it if you’d be willing to temporarily shorten the repository name to minimize the disruption to our Support team and other users. We want to help you get back to work here, while being mindful of other users’ experience.
+>
+> All best,
+>
+> Avery

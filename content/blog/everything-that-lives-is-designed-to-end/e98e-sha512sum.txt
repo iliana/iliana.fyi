@@ -1,0 +1,15 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+SHA512 (eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee.git.zip) = 27f5ea26016b70ebb803e75771bb1d03ed72a47b83c71bf2f165a63f0f58952f0b90fca2b22aad3058bd3b7e7b27e1a36ccfbbd8cffe28df1a027ad2853aba59
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEB66e7S7l7oqv2Rvz3ONByOlJvIEFAlwQxpIACgkQ3ONByOlJ
+vIHhzAgAk1I0w+J+xcl3eZq7GcagYGc/r768fTv+d6v1DsZoouPp+2M/w0bK5wjm
+GZlSyOtTsEErnPcZbMSbrKcYNWXuaHw2dTLVRaYd6By2tx/KGo9JmiZD+9pJ85iI
+Td859Jj1FuDL1j8xbrLVzEvcHEKZqWjOaKJkvq/iQ5VTJ0lDEuMXxa9q70mkvzSo
+LakhL0hW3H3JOWilARLh9Y0VVi6moj695Hd5MNBYq7StXYeu73hQkw9Jn8TX04em
+DEZCCn2wuFSVi15x0jM9WEQl1zTo7Of51HTR5Q46xo35T4T3Kiu41Lzi5w3ko5as
+GNVVN2kezTdKo7BnlhdcwE+d7EY7+w==
+=CMhz
+-----END PGP SIGNATURE-----

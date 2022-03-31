@@ -1,0 +1,63 @@
+Date: Wed, 12 Dec 2018 09:01:02 +0000
+From: iliana weller <ilianaw@buttslol.net>
+To: "Avery (GitHub Staff)" <support@github.com>
+Subject: Re: e30e/e98e
+User-Agent: Mutt/1.5.21 (2010-09-15)
+
+I have to apologize, because I said that given a precise limit, I would
+make the change.
+
+But 10 characters for each component does not reflect reality and is an
+absurd request compared to these other repositories that happen to be
+listed on github.com/trending:
+
+https://github.com/GokuMohandas/practicalAI
+https://github.com/MisterBooo/LeetCodeAnimation
+https://github.com/scutan90/DeepLearning-500-questions
+https://github.com/google-research/google-research
+
+I've made the repository read-only, and stalled my final response in
+order to make what I consider a sufficient backup of the repository and
+related content. That backup is complete.
+
+What happens with the repository is entirely in your hands at this
+point. We're not going to protest any changes made by GitHub staff, but
+we're not going to make them either.
+
+I want to apologize as well for e98e's impact on your ability to provide
+support to other users. That's not fair to you or users of GitHub. But I
+must ask your organization to consider the following:
+
+- If GitHub Support is significantly impacted by the load of users
+  reporting a repository, is the current system for reporting
+  repositories sustainable?
+
+- Does your current system harm targets of widespread harassment? For
+  example, if a person of color or a trans person builds a legitimate
+  software project that becomes incredibly popular, does the current
+  system effectively allow their harassers to disable the repository
+  with no immediate recourse? (Will they not be given an initial
+  response for 19 hours either?)
+
+For the record, I've published two blog posts regarding this repository:
+https://linuxwit.ch/blog/2018/12/e98e/
+https://linuxwit.ch/blog/2018/12/everything-that-lives-is-designed-to-end/
+
+And, finally: your development team should probably add a character
+limit to the repository description field, lest this happen again:
+https://twitter.com/joseluis_q/status/1072637228361375744
+
+Unless you have further questions or concerns, this will be my last
+email to support regarding e98e.
+
+--
+iliana weller <ilianaw@buttslol.net>
+
+On Tue, Dec 11, 2018 at 08:40:51PM +0000, Avery (GitHub Staff) wrote:
+> Hi iliana,
+>
+> Thanks for your reply, and for your cooperation. We'd ask that you limit the organization and repository names to 10 characters each for now.
+>
+> All best,
+>
+> Avery

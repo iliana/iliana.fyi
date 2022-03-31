@@ -24,7 +24,7 @@ export default function Index() {
             </a>
           </li>
           <li>
-            <a href="/lowercase">always lowercase</a>
+            <a href="/lowercase/">always lowercase</a>
           </li>
           <li>
             <a href="/etaoin.flac">pronounced /ɪliˈɑnə ɛˈtiːn/</a>
