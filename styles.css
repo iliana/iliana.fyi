@@ -79,6 +79,24 @@
   }
 }
 
+@layer components {
+  .footnote-reference a {
+    @apply no-underline;
+  }
+
+  .footnote-definition {
+    @apply relative text-sm lg:text-base xl:text-lg 2xl:text-xl;
+  }
+
+  .footnote-definition-label {
+    @apply absolute mt-[1.25em] lg:mt-[1.3333333em] xl:mt-[1.2em] 2xl:mt-[1.3333333em];
+  }
+
+  .footnote-definition p {
+    @apply pl-3.5 lg:pl-4 xl:pl-5 2xl:pl-6;
+  }
+}
+
 @layer utilities {
   .font-feature-case {
     --font-feature-case: "case" on;

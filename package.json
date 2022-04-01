@@ -4,7 +4,7 @@
     "dev": "util/subset-fonts.sh dev && concurrently --kill-others npm:serve npm:watch-render npm:watch-tailwind",
     "fix": "prettier -w .",
     "render": "node util/render-templates.mjs",
-    "serve": "zola serve",
+    "serve": "zola serve --drafts",
     "watch-render": "npm-watch render",
     "watch-tailwind": "tailwindcss -m -i styles.css -o static/styles.css --watch"
   },
