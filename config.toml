@@ -2,6 +2,7 @@ base_url = "https://iliana.fyi"
 title = "iliana.fyi"
 description = "iliana’s blog"
 generate_feed = true
+ignored_content = [".*.swp"]
 
 [markdown]
 highlight_code = true
