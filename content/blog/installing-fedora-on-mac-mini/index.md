@@ -23,7 +23,7 @@ A few months back, I tried the first Fedora Rawhide compose with these patchsets
 
 Since the Mac mini was sitting on a shelf for several months, I decided to make sure all its firmware was up-to-date by running the macOS Software Update until it told me there weren't anymore. After that I entered [macOS Recovery](https://support.apple.com/en-us/HT201314) to [disable Secure Boot and enable External Boot](https://support.apple.com/en-us/HT208330).
 
-The Fedora 31 netinst ISO doesn't have Linux 5.4, so I opted to install using a Fedora Rawhide network installer. It's possible to install prior versions of Fedora with Anaconda by overriding the repository URLs. `dd` the ISO to a USB drive and boot it by holding down <kbd class="key">⌥&nbsp;Option</kbd> (<kbd class="key">Alt</kbd>), then selecting the orange disk labeled "EFI Boot".
+The Fedora 31 netinst ISO doesn't have Linux 5.4, so I opted to install using a Fedora Rawhide network installer. It's possible to install prior versions of Fedora with Anaconda by overriding the repository URLs. `dd` the ISO to a USB drive and boot it by holding down <kbd class="key">⌥&nbsp;Option</kbd>/<kbd class="key">Alt</kbd>, then selecting the orange disk labeled "EFI Boot".
 
 After performing some failed installations and doing some research, I found out about two additional quirks. The first: attempting to add a new boot entry via `efibootmgr` will immediately display an `invalid opcode` message from the kernel and hang the system. A workaround is adding `efi=noruntime` to the kernel command line in both Anaconda and the installed system.
 

@@ -7,4 +7,9 @@
   .tag-equiv-a {
     @apply text-purple-600 dark:text-purple-400 font-medium underline;
   }
+
+  .prose kbd.key {
+    @apply font-sans text-sm lg:text-base xl:text-lg 2xl:text-xl px-1 lg:px-1.5 py-0.5 border rounded;
+    @apply border-gray-400 bg-gray-200 dark:border-gray-600 dark:bg-gray-800;
+  }
 }
