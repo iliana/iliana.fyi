@@ -55,7 +55,7 @@ export default function Index() {
               <time datetime="{{ page.date | date }}">{{ page.date | date(format="%B %e, %Y") }}</time>
               <${SrOnly}>:<//>
               <${Prose} noMargins className="prose-a:font-extrabold">
-                <a href="{{ page.path }}">{{ page.title }}</a>
+                <a href="{{ page.path }}">{{ page.title | markdown(inline=true) | safe }}</a>
               <//>
             </li>
             {% endfor %}

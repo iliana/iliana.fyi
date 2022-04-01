@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "build": "npm run render && zola build && tailwindcss -m -i styles.css -o public/styles.css",
-    "dev": "concurrently --kill-others npm:serve npm:watch-render npm:watch-tailwind",
+    "build": "npm run render && zola build && tailwindcss -m -i styles.css -o public/styles.css && util/subset-fonts.sh",
+    "dev": "util/subset-fonts.sh dev && concurrently --kill-others npm:serve npm:watch-render npm:watch-tailwind",
     "fix": "prettier -w .",
     "render": "node util/render-templates.mjs",
     "serve": "zola serve",

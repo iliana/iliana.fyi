@@ -10,8 +10,8 @@ export default function Base({ children }) {
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <title>
-          {% if section.title %}{{ section.title }} — {% endif %}{% if page.title %}{{ page.title }} — {% endif
-          %}iliana.fyi
+          {% if section.title %}{{ section.title | markdown(inline=true) | striptags }} — {% endif %}{% if page.title
+          %}{{ page.title | markdown(inline=true) | striptags }} — {% endif %}iliana.fyi
         </title>
         <link rel="icon" href="/netscape.gif" />
         <link rel="stylesheet" href="/styles.css" />

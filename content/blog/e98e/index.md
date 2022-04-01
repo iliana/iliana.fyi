@@ -3,7 +3,7 @@ title = "A tale of 132 e’s"
 date = 2018-12-10
 +++
 
-_(Updates moved to follow-up post: "[the [E]nd of eeeee](/blog/everything-that-lives-is-designed-to-end/)".)_
+_(Updates moved to follow-up post: "[the <span class="font-feature-case">[E]nd</span> of eeeee](/blog/everything-that-lives-is-designed-to-end/)".)_
 
 A few weeks ago [my](https://github.com/ilianaw) most popular repository on GitHub was [crowbar](https://github.com/ilianaw/rust-crowbar), a Rust crate that I'm particularly proud of. It wasn't necessarily _good_, but it did something interesting. It has 168 stars.
 
@@ -64,4 +64,4 @@ But without fail, every time I think that, [there's an absolutely beautiful pull
 
 [![Conway's Game of Life ticker spitting out lowercase e's](conway-eeeee.png)](conway-eeeee.png)
 
-_(Updates moved to follow-up post: "[the [E]nd of eeeee](/blog/everything-that-lives-is-designed-to-end/)".)_
+_(Updates moved to follow-up post: "[the <span class="font-feature-case">[E]nd</span> of eeeee](/blog/everything-that-lives-is-designed-to-end/)".)_

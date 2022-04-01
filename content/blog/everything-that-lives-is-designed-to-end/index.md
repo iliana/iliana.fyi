@@ -1,5 +1,5 @@
 +++
-title = "the [E]nd of eeeee"
+title = "the <span class=\"font-feature-case\">[E]</span>nd of eeeee"
 date = 2018-12-11
 +++
 

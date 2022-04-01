@@ -3,13 +3,84 @@
 @tailwind utilities;
 
 @layer base {
-  a,
-  .tag-equiv-a {
+  /* also update components/prose.mjs */
+  a {
     @apply text-purple-600 dark:text-purple-400 font-medium underline;
+  }
+
+  @font-face {
+    font-family: "Inter subset";
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+    src: url("Inter-roman.var.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Inter subset";
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+    src: url("Inter-italic.var.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Iosevka subset";
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url("iosevka-extended.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Iosevka subset";
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+    src: url("iosevka-extendeditalic.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Iosevka subset";
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url("iosevka-extendedbold.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Iosevka subset";
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+    src: url("iosevka-extendedbolditalic.woff2") format("woff2");
+  }
+
+  :root {
+    --font-feature-case: "case" off;
+    --font-feature-ss03: "ss03" on;
+  }
+
+  * {
+    font-feature-settings: var(--font-feature-case), var(--font-feature-ss03);
+  }
+
+  code,
+  kbd,
+  pre,
+  samp {
+    --font-feature-ss03: "ss03" off;
   }
 
   .prose kbd.key {
     @apply font-sans text-sm lg:text-base xl:text-lg 2xl:text-xl px-1 lg:px-1.5 py-0.5 border rounded;
     @apply border-gray-400 bg-gray-200 dark:border-gray-600 dark:bg-gray-800;
+    --font-feature-ss03: "ss03" on;
+  }
+}
+
+@layer utilities {
+  .font-feature-case {
+    --font-feature-case: "case" on;
   }
 }

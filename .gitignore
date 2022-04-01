@@ -1,4 +1,6 @@
+/fonts/*.zip
 /node_modules
 /public
+/static/*.woff2
 /static/styles.css
 /templates/*.html

@@ -18,7 +18,7 @@ export default function Page() {
           </time>
           {% endif %}
           <${Prose}>
-            <h1>{{ page.title }}</h1>
+            <h1>{{ page.title | markdown(inline=true) | safe }}</h1>
             {{ page.content | safe }}
           <//>
         </main>
