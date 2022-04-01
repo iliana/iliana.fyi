@@ -30,7 +30,7 @@ That's the whole story.
 
 I created it as an empty repository, as I like to make the first commit myself. This was when I learned I couldn't push to this repository via git. I couldn't fork it because it was empty, so I had to delete it and recreate it with a README.md.
 
-I then posted about it [on the fediverse](https://cybre.space/@iliana) and some folks had fun &mdash; five of the first six pull requests are my friends.
+I then posted about it [on the fediverse](https://cybre.space/@iliana) and some folks had fun --- five of the first six pull requests are my friends.
 
 ## The unstoppable e98e
 
