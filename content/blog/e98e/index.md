@@ -1,6 +1,6 @@
 +++
 title = "A tale of 132 e’s"
-date = 2018-12-10
+date = 2018-12-10T12:00:00-08:00
 +++
 
 _(Updates moved to follow-up post: "[the <span class="font-feature-case">[E]nd</span> of eeeee](/blog/everything-that-lives-is-designed-to-end/)".)_

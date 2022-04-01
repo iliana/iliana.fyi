@@ -1,6 +1,6 @@
 +++
 title = "Identity fluidity and keysmashing"
-date = 2020-07-02
+date = 2020-07-02T12:00:00-07:00
 +++
 
 I [previously wrote](/blog/fitting-rooms-for-your-name/) about systems, such as the Amazon employee directory, that can be designed with identity fluidity in mind. I also wrote about the last name _destroyer of worlds_, one that I'm fond of, but has a number of non-trivial issues that make me think twice before making it my legal name.
