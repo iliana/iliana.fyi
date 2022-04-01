@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "npm run render && tailwindcss -m -i styles.css -o static/styles.css && zola build",
+    "build": "npm run render && zola build && tailwindcss -m -i styles.css -o public/styles.css",
     "dev": "concurrently --kill-others npm:serve npm:watch-render npm:watch-tailwind",
     "fix": "prettier -w .",
     "render": "node util/render-templates.mjs",
@@ -12,6 +12,7 @@
     "@swc/core": "^1.2.161",
     "@tailwindcss/typography": "^0.5.2",
     "@trivago/prettier-plugin-sort-imports": "^3.2.0",
+    "browserslist": "^4.20.2",
     "htm": "^3.1.0",
     "preact-render-to-string": "^5.1.20",
     "prettier": "^2.6.1",
@@ -24,6 +25,9 @@
     "concurrently": "^7.0.0",
     "npm-watch": "^0.11.0"
   },
+  "browserslist": [
+    "defaults"
+  ],
   "prettier": {
     "printWidth": 120,
     "proseWrap": "never",

@@ -1,4 +1,4 @@
-import { minifySync } from "@swc/core";
+import { transformSync, minifySync } from "@swc/core";
 import { html } from "htm/preact";
 import { CgDarkMode } from "react-icons/cg/index.js";
 import { SkipNavLink } from "./skip-nav.mjs";
@@ -18,7 +18,8 @@ export default function Base({ children }) {
         <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
         <${Script}
           f=${() => {
-            document.addEventListener("color-scheme-toggle", (event) => {
+            const toggle = "color-scheme-toggle";
+            document.addEventListener(toggle, (event) => {
               const c = document.documentElement.classList;
               const localScheme = (() => {
                 try {
@@ -39,7 +40,7 @@ export default function Base({ children }) {
                 c.remove("dark");
               }
             });
-            document.dispatchEvent(new Event("color-scheme-toggle"));
+            document.dispatchEvent(new Event(toggle));
           }}
         />
       </head>
@@ -55,10 +56,11 @@ export default function Base({ children }) {
         </div>
         <${Script}
           f=${() => {
+            const toggle = "color-scheme-toggle";
             const c = document.documentElement.classList;
-            const button = document.getElementById("color-scheme-toggle");
+            const button = document.getElementById(toggle);
             const update = (e) => {
-              document.dispatchEvent(new CustomEvent("color-scheme-toggle", { detail: { e } }));
+              document.dispatchEvent(new CustomEvent(toggle, { detail: { e } }));
               button.title = button.ariaLabel = c.contains("dark") ? "Light mode" : "Dark mode";
             };
 
@@ -81,7 +83,7 @@ export default function Base({ children }) {
 }
 
 function Script({ f }) {
-  const code = minifySync(f.toString(), { mangle: true }).code;
+  const code = minifySync(transformSync(f.toString()).code, { mangle: true }).code;
   return html`
     <script dangerouslySetInnerHTML=${{ __html: `(${code})()` }} />
   `;
