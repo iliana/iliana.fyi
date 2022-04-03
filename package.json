@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "fonts/fetch.sh && webpack --node-env production && zola build",
+    "build": "fonts/fetch.sh && webpack --node-env production && zola build && fonts/subset.sh",
     "dev": "fonts/fetch.sh && concurrently --kill-others \"zola serve --drafts\" \"webpack --watch\"",
     "fix": "prettier -w . && eslint --ext .js,.jsx --fix ."
   },
