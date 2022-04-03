@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ lang }}">
 	<title>{{ config.title }}
 		{%- if term %} - {{ term.name }}
-    {%- elif section.title %} - {{ section.title }}
+    {%- elif section.title %} - {{ section.title | markdown(inline=true) | striptags }}
 		{%- endif -%}
 	</title>
 	{%- if config.description %}

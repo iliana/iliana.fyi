@@ -1,5 +1,5 @@
 +++
-title = "A tale of 132 e’s"
+title = "A tale of 132 e's"
 date = 2018-12-10T12:00:00-08:00
 +++
 
