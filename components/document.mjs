@@ -77,6 +77,7 @@ export default function Base({ children }) {
             button.classList.remove("hidden");
           }}
         />
+        <script defer data-domain="iliana.fyi" src="https://plausible.io/js/script.js"></script>
       </body>
     </html>
   `;
