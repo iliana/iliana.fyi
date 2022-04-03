@@ -1,12 +1,8 @@
 {
   "scripts": {
-    "build": "webpack && npm run postcss && zola build && util/subset-fonts.sh",
-    "dev": "util/subset-fonts.sh dev && concurrently --kill-others npm:watch-webpack npm:watch-postcss npm:serve",
-    "fix": "prettier -w .",
-    "postcss": "postcss styles.css -o static/styles.css",
-    "serve": "zola serve --drafts",
-    "watch-postcss": "npm run postcss && npm run postcss -- -w",
-    "watch-webpack": "webpack --watch"
+    "build": "fonts/fetch.sh && webpack --node-env production && zola build",
+    "dev": "fonts/fetch.sh && concurrently --kill-others \"zola serve --drafts\" \"webpack --watch\"",
+    "fix": "prettier -w ."
   },
   "dependencies": {
     "@babel/preset-env": "^7.16.11",
@@ -16,9 +12,11 @@
     "autoprefixer": "^10.4.4",
     "babel-loader": "^8.2.4",
     "concurrently": "^7.0.0",
+    "css-loader": "^6.7.1",
     "cssnano": "^5.1.7",
     "eval": "^0.1.8",
-    "postcss-cli": "^9.1.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "postcss-loader": "^6.2.1",
     "prettier": "^2.6.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",

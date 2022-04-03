@@ -1,4 +1,5 @@
 const { sources } = require("webpack");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const fs = require("fs");
 const path = require("path");
 const evalModule = require("eval");
@@ -31,14 +32,21 @@ class StaticPageGenerator {
 }
 
 module.exports = {
-  mode: "production",
+  mode: process.env.NODE_ENV === "production" ? "production" : "development",
   entry: fs
     .readdirSync(path.join(__dirname, "lib", "templates"))
     .filter((p) => path.extname(p) == ".jsx")
-    .reduce((acc, p) => ({ ...acc, [path.basename(p, ".jsx")]: path.join(__dirname, "lib", "templates", p) }), {}),
+    .reduce(
+      (acc, p) => ({
+        ...acc,
+        [`../templates/${path.basename(p, ".jsx")}`]: path.join(__dirname, "lib", "templates", p),
+      }),
+      {}
+    ),
   output: {
-    path: path.join(__dirname, "templates"),
+    path: path.join(__dirname, "static"),
     library: { type: "commonjs2" },
+    assetModuleFilename: "[name][ext]",
   },
   module: {
     rules: [
@@ -47,8 +55,12 @@ module.exports = {
         exclude: /node_modules/,
         use: ["babel-loader"],
       },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+      },
     ],
   },
-  plugins: [new StaticPageGenerator()],
+  plugins: [new MiniCssExtractPlugin({ filename: "styles.css" }), new StaticPageGenerator()],
   resolve: { extensions: [".js", ".jsx"] },
 };

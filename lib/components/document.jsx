@@ -1,4 +1,5 @@
 import { CgDarkMode } from "react-icons/cg";
+import "../../styles.css";
 import { SkipNavLink } from "./skip-nav";
 
 export default function Base({ children }) {
