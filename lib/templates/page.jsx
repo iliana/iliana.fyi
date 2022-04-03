@@ -1,3 +1,4 @@
+import React from "react";
 import Document from "../components/document";
 import Prose from "../components/prose";
 import { SkipNavContent } from "../components/skip-nav";

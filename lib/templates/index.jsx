@@ -1,3 +1,4 @@
+import React from "react";
 import { HiOutlineMail } from "react-icons/hi";
 import { IoLogoGithub, IoLogoTwitter } from "react-icons/io5";
 import Document from "../components/document";

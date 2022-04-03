@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function Prose({ className, noMargins, children }) {
   return (
     <div

@@ -1,3 +1,5 @@
+/* global document, window, CustomEvent */
+import React from "react";
 import { CgDarkMode } from "react-icons/cg";
 import "../../styles.css";
 import { SkipNavLink } from "./skip-nav";
@@ -81,12 +83,13 @@ export default function Base({ children }) {
             button.classList.remove("hidden");
           }}
         />
-        <script defer data-domain="iliana.fyi" src="https://plausible.io/js/script.js"></script>
+        <script defer data-domain="iliana.fyi" src="https://plausible.io/js/script.js" />
       </body>
     </html>
   );
 }
 
 function Script({ f }) {
+  /* eslint-disable-next-line react/no-danger */
   return <script dangerouslySetInnerHTML={{ __html: `(${f})()` }} />;
 }

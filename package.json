@@ -2,9 +2,11 @@
   "scripts": {
     "build": "fonts/fetch.sh && webpack --node-env production && zola build",
     "dev": "fonts/fetch.sh && concurrently --kill-others \"zola serve --drafts\" \"webpack --watch\"",
-    "fix": "prettier -w ."
+    "fix": "prettier -w . && eslint --ext .js,.jsx --fix ."
   },
   "dependencies": {
+    "@babel/eslint-parser": "^7.17.0",
+    "@babel/eslint-plugin": "^7.17.7",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@tailwindcss/typography": "^0.5.2",
@@ -14,6 +16,8 @@
     "concurrently": "^7.0.0",
     "css-loader": "^6.7.1",
     "cssnano": "^5.1.7",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
     "eval": "^0.1.8",
     "mini-css-extract-plugin": "^2.6.0",
     "postcss-loader": "^6.2.1",
@@ -22,6 +26,7 @@
     "react-dom": "^18.0.0",
     "react-icons": "^4.3.1",
     "tailwindcss": "^3.0.23",
+    "webpack": "^5.71.0",
     "webpack-cli": "^4.9.2"
   },
   "prettier": {
@@ -32,18 +37,32 @@
       "^[./]"
     ]
   },
+  "eslintConfig": {
+    "parser": "@babel/eslint-parser",
+    "plugins": [
+      "@babel"
+    ],
+    "extends": [
+      "airbnb",
+      "prettier"
+    ],
+    "rules": {
+      "no-multi-assign": [
+        "error",
+        {
+          "ignoreNonDeclaration": true
+        }
+      ],
+      "react/prop-types": "off"
+    }
+  },
   "browserslist": [
     "defaults"
   ],
   "babel": {
     "presets": [
       "@babel/preset-env",
-      [
-        "@babel/preset-react",
-        {
-          "runtime": "automatic"
-        }
-      ]
+      "@babel/preset-react"
     ]
   }
 }

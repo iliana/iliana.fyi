@@ -6,12 +6,13 @@ const evalModule = require("eval");
 const { renderToStaticMarkup } = require("react-dom/server");
 
 class StaticPageGenerator {
+  /* eslint-disable-next-line class-methods-use-this */
   apply(compiler) {
     compiler.hooks.thisCompilation.tap("StaticPageGenerator", (compilation) => {
       compilation.hooks.afterOptimizeAssets.tap("StaticPageGenerator", (assets) => {
         Object.entries(assets)
           .filter(([file]) => file.endsWith(".js"))
-          .map(([file, source]) => {
+          .forEach(([file, source]) => {
             const html = renderToStaticMarkup(evalModule(source.source()).default()).replaceAll(
               /{[%{].*&quot;.*[%}]}/g,
               (match) => match.replaceAll("&quot;", '"')
@@ -35,7 +36,7 @@ module.exports = {
   mode: process.env.NODE_ENV === "production" ? "production" : "development",
   entry: fs
     .readdirSync(path.join(__dirname, "lib", "templates"))
-    .filter((p) => path.extname(p) == ".jsx")
+    .filter((p) => path.extname(p) === ".jsx")
     .reduce(
       (acc, p) => ({
         ...acc,
