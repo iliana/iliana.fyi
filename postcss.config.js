@@ -3,6 +3,6 @@ module.exports = {
     tailwindcss: {},
     autoprefixer: {},
     "./util/dark-mangle.js": {},
-    ...(process.env.NODE_ENV === "production" ? { cssnano: {} } : {}),
+    cssnano: {},
   },
 };
