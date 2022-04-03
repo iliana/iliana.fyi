@@ -1,6 +1,6 @@
 +++
 title = "Tailscale's human-scale networks are still controlled by Google and Microsoft"
-date = 2022-04-01T12:00:00-07:00
+date = 2022-04-04T12:00:00-07:00
 draft = true
 +++
 
