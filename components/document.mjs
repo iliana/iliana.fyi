@@ -18,19 +18,18 @@ export default function Base({ children }) {
         <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
         <${Script}
           f=${() => {
-            const toggle = "color-scheme-toggle";
-            document.addEventListener(toggle, (event) => {
-              const c = document.documentElement.classList;
+            const c = document.documentElement.classList;
+            const f = (event) => {
               const localScheme = (() => {
                 try {
-                  return window.localStorage.getItem("color-scheme");
+                  return window.localStorage.color;
                 } catch (e) {
                   return undefined;
                 }
               })();
 
               if (
-                event.detail?.e === true
+                event?.detail?.toggle === true
                   ? !c.contains("dark")
                   : localScheme === "dark" ||
                     (localScheme !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches)
@@ -39,9 +38,10 @@ export default function Base({ children }) {
               } else {
                 c.remove("dark");
               }
-              c.remove("no-js");
-            });
-            document.dispatchEvent(new Event(toggle));
+            };
+            f();
+            c.remove("no-js");
+            document.addEventListener("update-color-scheme", f);
           }}
         />
       </head>
@@ -57,12 +57,15 @@ export default function Base({ children }) {
         </div>
         <${Script}
           f=${() => {
-            const toggle = "color-scheme-toggle";
+            const ev = "update-color-scheme";
             const c = document.documentElement.classList;
-            const button = document.getElementById(toggle);
-            const update = (e) => {
-              document.dispatchEvent(new CustomEvent(toggle, { detail: { e } }));
+            const button = document.getElementById("color-scheme-toggle");
+            document.addEventListener(ev, () => {
               button.title = button.ariaLabel = c.contains("dark") ? "Light mode" : "Dark mode";
+            });
+
+            const update = (toggle) => {
+              document.dispatchEvent(new CustomEvent(ev, { detail: { toggle } }));
             };
 
             window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", update);
@@ -70,7 +73,7 @@ export default function Base({ children }) {
             button.addEventListener("click", () => {
               update(true);
               try {
-                window.localStorage.setItem("color-scheme", c.contains("dark") ? "dark" : "light");
+                window.localStorage.color = c.contains("dark") ? "dark" : "light";
               } catch (e) {
                 // nothing
               }
@@ -85,8 +88,13 @@ export default function Base({ children }) {
 }
 
 function Script({ f }) {
-  const code = minifySync(transformSync(f.toString()).code, { mangle: true }).code;
+  const code = transformSync(`(${f})()`, {
+    jsc: {
+      minify: { compress: { unsafe_arrows: true }, mangle: true },
+    },
+    minify: true,
+  }).code;
   return html`
-    <script dangerouslySetInnerHTML=${{ __html: `(${code})()` }} />
+    <script dangerouslySetInnerHTML=${{ __html: code }} />
   `;
 }

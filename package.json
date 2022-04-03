@@ -29,7 +29,7 @@
     "prettier": "^2.6.1"
   },
   "browserslist": [
-    "defaults"
+    "defaults and supports arrow-functions"
   ],
   "prettier": {
     "printWidth": 120,
