@@ -13,7 +13,7 @@ export function SkipNavLink() {
 
 export function SkipNavContent({ children }) {
   return html`
-    <div id="start-of-content" tabindex="{-1}" aria-hidden="true" />
+    <div id="start-of-content" tabindex=${-1} aria-hidden="true" />
     ${children}
   `;
 }

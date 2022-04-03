@@ -1,6 +1,7 @@
 base_url = "https://iliana.fyi"
 title = "iliana.fyi"
 description = "iliana’s blog"
+minify_html = true
 generate_feed = true
 ignored_content = [".*.swp"]
 
