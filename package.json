@@ -1,29 +1,32 @@
 {
   "scripts": {
-    "build": "npm run render && zola build && tailwindcss -m -i styles.css -o public/styles.css && util/subset-fonts.sh",
-    "dev": "util/subset-fonts.sh dev && concurrently --kill-others npm:serve npm:watch-render npm:watch-tailwind",
+    "build": "npm run render && npm run postcss -- --env production && zola build && util/subset-fonts.sh",
+    "dev": "util/subset-fonts.sh dev && concurrently --kill-others npm:serve npm:watch-postcss npm:watch-render",
     "fix": "prettier -w .",
     "render": "node util/render-templates.mjs",
+    "postcss": "postcss styles.css -o static/styles.css",
     "serve": "zola serve --drafts",
-    "watch-render": "npm-watch render",
-    "watch-tailwind": "tailwindcss -m -i styles.css -o static/styles.css --watch"
+    "watch-postcss": "npm run postcss && npm run postcss -- -w",
+    "watch-render": "npm-watch render"
   },
   "dependencies": {
     "@swc/core": "^1.2.161",
     "@tailwindcss/typography": "^0.5.2",
-    "@trivago/prettier-plugin-sort-imports": "^3.2.0",
     "browserslist": "^4.20.2",
+    "cssnano": "^5.1.7",
     "htm": "^3.1.0",
+    "postcss-cli": "^9.1.0",
     "preact-render-to-string": "^5.1.20",
-    "prettier": "^2.6.1",
     "react": "npm:@preact/compat@^17.0.3",
     "react-dom": "npm:@preact/compat@^17.0.3",
     "react-icons": "^4.3.1",
     "tailwindcss": "^3.0.23"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^3.2.0",
     "concurrently": "^7.0.0",
-    "npm-watch": "^0.11.0"
+    "npm-watch": "^0.11.0",
+    "prettier": "^2.6.1"
   },
   "browserslist": [
     "defaults"

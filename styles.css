@@ -3,11 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  /* also update components/prose.mjs */
-  a {
-    @apply text-purple-600 dark:text-purple-400 font-medium underline;
-  }
-
   @font-face {
     font-family: "Inter subset";
     font-weight: 100 900;
@@ -56,13 +51,15 @@
     src: url("iosevka-extendedbolditalic.woff2") format("woff2");
   }
 
-  :root {
+  * {
     --font-feature-case: "case" off;
     --font-feature-ss03: "ss03" on;
+    font-feature-settings: var(--font-feature-case), var(--font-feature-ss03);
   }
 
-  * {
-    font-feature-settings: var(--font-feature-case), var(--font-feature-ss03);
+  /* also update components/prose.mjs */
+  a {
+    @apply text-purple-600 dark:text-purple-400 font-medium underline;
   }
 
   code,

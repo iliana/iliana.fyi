@@ -4,7 +4,6 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
   content: ["./{components,templates}/*.mjs", "./content/**/*.md"],
   safelist: ["footnote-reference", "footnote-definition", "footnote-definition-label"],
-  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {

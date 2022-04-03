@@ -5,7 +5,7 @@ import { SkipNavLink } from "./skip-nav.mjs";
 
 export default function Base({ children }) {
   return html`
-    <html lang="en">
+    <html lang="en" class="no-js">
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
@@ -39,6 +39,7 @@ export default function Base({ children }) {
               } else {
                 c.remove("dark");
               }
+              c.remove("no-js");
             });
             document.dispatchEvent(new Event(toggle));
           }}
