@@ -77,7 +77,6 @@ export default function Base({ children }) {
             button.classList.remove("hidden");
           }}
         />
-        <script src="https://unreal-tea.iliana.fyi/script.js" data-site="APVSDETU" defer></script>
       </body>
     </html>
   `;
