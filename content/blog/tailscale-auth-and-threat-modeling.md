@@ -1,7 +1,6 @@
 +++
 title = "Tailscale's human-scale networks are still controlled by Google and Microsoft"
 date = 2022-04-04T12:00:00-07:00
-draft = true
 +++
 
 I'm not sure if they realize it yet, but Tailscale seems to work extremely well for polycules. Each user can have their own single-user [Tailnet][tailnet] and [explicitly share specific machines][sharing] with other people. Both parties have to consent to sharing a device; either party can revoke this consent. The device owner can further restrict accessible ports through [ACLs][acls]. Tailscale runs on [pretty][netbsd] [much][illumos] anything if you try hard and believe in yourself. This entire use case, up to this point, fits in Tailscale's free tier.
