@@ -35,6 +35,6 @@ I just want to have a single-user Tailnet and explicitly share machines with my 
 
 [^fn-username]: It's unclear what happens to your Tailnet if you change your email or username with the identity provider, since Tailscale appears to make this a one-to-one mapping to your Tailnet. [Identity is a fraught topic for trans people and plural systems](https://christine.website/blog/identity-model-software-2021-01-31), whether these users are on the free tier or an enterprise account.
 
-[//]: <>
+[//]: #
 
 [^fn-ice]: Both of these companies [still have contracts with ICE](https://www.businessinsider.com/google-amazon-microsoft-ice-cbp-third-party-contracts-cloud-2021-10) and are regularly involved in union-busting, so these are somewhat concerning companies to force your free-tier customers to use.
