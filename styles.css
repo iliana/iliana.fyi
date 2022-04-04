@@ -24,7 +24,7 @@
     font-weight: 400;
     font-style: normal;
     font-display: swap;
-    src: url("fonts/iosevka-extended.woff2") format("woff2");
+    src: url("fonts/iosevka-fixed-extended.woff2") format("woff2");
   }
 
   @font-face {
@@ -32,7 +32,7 @@
     font-weight: 400;
     font-style: italic;
     font-display: swap;
-    src: url("fonts/iosevka-extendeditalic.woff2") format("woff2");
+    src: url("fonts/iosevka-fixed-extendeditalic.woff2") format("woff2");
   }
 
   @font-face {
@@ -40,7 +40,7 @@
     font-weight: 700;
     font-style: normal;
     font-display: swap;
-    src: url("fonts/iosevka-extendedbold.woff2") format("woff2");
+    src: url("fonts/iosevka-fixed-extendedbold.woff2") format("woff2");
   }
 
   @font-face {
@@ -48,13 +48,12 @@
     font-weight: 700;
     font-style: italic;
     font-display: swap;
-    src: url("fonts/iosevka-extendedbolditalic.woff2") format("woff2");
+    src: url("fonts/iosevka-fixed-extendedbolditalic.woff2") format("woff2");
   }
 
   * {
-    --font-feature-case: "case" off;
-    --font-feature-ss03: "ss03" on;
-    font-feature-settings: var(--font-feature-case), var(--font-feature-ss03);
+    @apply no-font-feature-case font-feature-inter;
+    font-feature-settings: var(--font-feature-case), var(--font-feature-inter);
   }
 
   /* also update components/prose.mjs */
@@ -66,13 +65,12 @@
   kbd,
   pre,
   samp {
-    --font-feature-ss03: "ss03" off;
+    @apply no-font-feature-inter;
   }
 
   .prose kbd.key {
-    @apply font-sans text-sm lg:text-base xl:text-lg 2xl:text-xl px-1 lg:px-1.5 py-0.5 border rounded;
-    @apply border-gray-400 bg-gray-200 dark:border-gray-600 dark:bg-gray-800;
-    --font-feature-ss03: "ss03" on;
+    @apply font-sans font-feature-inter text-sm lg:text-base xl:text-lg 2xl:text-xl px-1 lg:px-1.5 py-0.5;
+    @apply border rounded border-gray-400 bg-gray-200 dark:border-gray-600 dark:bg-gray-800;
   }
 }
 
@@ -97,5 +95,17 @@
 @layer utilities {
   .font-feature-case {
     --font-feature-case: "case" on;
+  }
+
+  .no-font-feature-case {
+    --font-feature-case: "case" off;
+  }
+
+  .font-feature-inter {
+    --font-feature-inter: "cv05" on, "cv08" on, "ss03" on;
+  }
+
+  .no-font-feature-inter {
+    --font-feature-inter: "cv05" off, "cv08" off, "ss03" off;
   }
 }
