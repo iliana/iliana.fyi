@@ -1,0 +1,22 @@
+{# vim: set ft=txt: #}
+
+{% macro markdown_hacks(input) %}
+  {% set chunks = input | split(pat='"') %}
+  {%- for chunk in chunks -%}
+    {%- if chunk == "footnote-definition-label" -%}
+      "footnote-definition-label">
+      <a href="#{{ chunks | nth(n=loop.index0 - 2) }}-backref"
+      {{- chunks | nth(n=loop.index0 + 1) | split(pat="</sup>") | nth(n=0) | safe -}}
+      </a>
+    {%- elif loop.index0 >= 1 and chunks | nth(n=loop.index0 - 1) == "footnote-definition-label" -%}
+      {%- for inner in chunk | split(pat="</sup>") -%}
+        {%- if loop.index0 > 0 -%}</sup>{{ inner | safe }}{%- endif -%}
+      {%- endfor -%}
+    {%- elif loop.index0 >= 2 and chunks | nth(n=loop.index0 - 2) == "footnote-reference" -%}
+      "{{ chunk }}" id="{{ chunk | replace(from="#", to="") }}-backref
+    {%- else -%}
+      {%- if loop.index0 > 0 -%}"{%- endif -%}
+      {{ chunk | safe }}
+    {%- endif -%}
+  {%- endfor -%}
+{% endmacro markdown_hacks %}

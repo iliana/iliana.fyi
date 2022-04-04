@@ -21,7 +21,7 @@ export default function Page() {
           {"{% endif %}"}
           <Prose>
             <h1>{"{{ page.title | markdown(inline=true) | safe }}"}</h1>
-            {"{{ page.content | safe }}"}
+            {"{{ macros::markdown_hacks(input=page.content) }}"}
           </Prose>
         </main>
       </SkipNavContent>

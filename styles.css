@@ -75,7 +75,7 @@
 }
 
 @layer components {
-  .footnote-reference a {
+  .footnote-reference a, .footnote-definition-label a {
     @apply no-underline;
   }
 

@@ -23,7 +23,7 @@ class StaticPageGenerator {
                 base: "",
                 ext: ".html",
               }),
-              new sources.RawSource(`<!DOCTYPE html>${html}`)
+              new sources.RawSource(`{% import "macros.html" as macros %}<!DOCTYPE html>${html}`)
             );
             compilation.deleteAsset(file);
           });
