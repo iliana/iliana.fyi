@@ -1,9 +1,9 @@
-const { sources } = require("webpack");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const fs = require("fs");
 const path = require("path");
 const evalModule = require("eval");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { renderToStaticMarkup } = require("react-dom/server");
+const { sources } = require("webpack");
 
 class StaticPageGenerator {
   /* eslint-disable-next-line class-methods-use-this */
