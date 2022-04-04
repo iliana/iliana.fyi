@@ -1,6 +1,6 @@
 /* global document, window, CustomEvent */
 
-import "../../styles.css";
+import "../styles.css";
 import React from "react";
 import { CgDarkMode } from "react-icons/cg";
 import { SkipNavLink } from "./skip-nav";

@@ -5,3 +5,4 @@
 /static/*.woff2
 /static/styles.css
 /templates/*.html
+!/templates/macros.html

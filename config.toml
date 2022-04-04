@@ -7,7 +7,13 @@ ignored_content = [".*.swp"]
 
 [markdown]
 highlight_code = true
-highlight_theme = "ayu-dark"
+highlight_theme = "css"
+# these are stored outside of `static/` so they can be `@import`ed into the right spots of styles.css, and are checked
+# into version control to avoid a cyclical dependency.
+highlight_themes_css = [
+  { theme = "ayu-dark", filename = "../lib/code-dark.css" },
+  { theme = "ayu-light", filename = "../lib/code-light.css" },
+]
 smart_punctuation = true
 
 [extra]
