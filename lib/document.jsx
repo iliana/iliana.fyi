@@ -1,11 +1,10 @@
 /* global document, window, CustomEvent */
 
-import "../styles.css";
+import "./styles.css";
 import React from "react";
 import { CgDarkMode } from "react-icons/cg";
-import { SkipNavLink } from "./skip-nav";
 
-export default function Base({ children }) {
+export default function Document({ children }) {
   return (
     <html lang="en" className="no-js">
       <head>
@@ -51,7 +50,6 @@ export default function Base({ children }) {
         />
       </head>
       <body className="text-gray-700 dark:text-gray-300 bg-white dark:bg-black text-base lg:text-lg xl:text-xl 2xl:text-2xl leading-relaxed lg:leading-relaxed xl:leading-relaxed 2xl:leading-relaxed p-4 lg:p-6 xl:p-7 2xl:p-8">
-        <SkipNavLink />
         <div className="2xl:container 2xl:mx-auto">
           <button id="color-scheme-toggle" type="button" className="hidden float-right text-2xl xl:text-3xl">
             <CgDarkMode aria-hidden="true" focusable="false" />

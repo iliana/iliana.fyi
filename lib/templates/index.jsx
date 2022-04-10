@@ -1,10 +1,8 @@
 import React from "react";
 import { HiOutlineMail } from "react-icons/hi";
 import { IoLogoGithub, IoLogoTwitter } from "react-icons/io5";
-import Document from "../components/document";
-import Prose from "../components/prose";
-import { SkipNavContent } from "../components/skip-nav";
-import SrOnly from "../components/sr-only";
+import Document from "../document";
+import Prose from "../prose";
 
 export default function Index() {
   return (
@@ -18,7 +16,7 @@ export default function Index() {
           <li>
             <a href="https://pronoun.is/xie/xer?or=she">
               xie/xer
-              <SrOnly> pronouns</SrOnly>
+              <span className="sr-only"> pronouns</span>
             </a>
           </li>
           <li>
@@ -46,23 +44,21 @@ export default function Index() {
           </li>
         </LinkList>
 
-        <SkipNavContent>
-          <Prose>{"{{ section.content | safe }}"}</Prose>
+        <Prose>{"{{ section.content | safe }}"}</Prose>
 
-          <h2 className="sr-only">Blog</h2>
-          {'{% set blog = get_section(path="blog/_index.md") %}'}
-          <ul>
-            {"{% for page in blog.pages %}"}
-            <li className="text-sm lg:text-base xl:text-lg 2xl:text-xl my-3.5 lg:my-4 xl:my-5 2xl:my-6">
-              <time dateTime="{{ page.date | date }}">{'{{ page.date | date(format="%B %e, %Y") }}'}</time>
-              <SrOnly>: </SrOnly>
-              <Prose noMargins className="prose-a:font-extrabold">
-                <a href="{{ page.path }}">{"{{ page.title | markdown(inline=true) | safe }}"}</a>
-              </Prose>
-            </li>
-            {"{% endfor %}"}
-          </ul>
-        </SkipNavContent>
+        <h2 className="sr-only">Blog</h2>
+        {'{% set blog = get_section(path="blog/_index.md") %}'}
+        <ul>
+          {"{% for page in blog.pages %}"}
+          <li className="text-sm lg:text-base xl:text-lg 2xl:text-xl my-3.5 lg:my-4 xl:my-5 2xl:my-6">
+            <time dateTime="{{ page.date | date }}">{'{{ page.date | date(format="%B %e, %Y") }}'}</time>
+            <span className="sr-only">: </span>
+            <Prose noMargins className="prose-a:font-extrabold">
+              <a href="{{ page.path }}">{"{{ page.title | markdown(inline=true) | safe }}"}</a>
+            </Prose>
+          </li>
+          {"{% endfor %}"}
+        </ul>
       </main>
     </Document>
   );
@@ -79,7 +75,7 @@ function LogoLink({ logo: Logo, href, label, children }) {
     <span className="whitespace-nowrap">
       <Logo className="inline mr-1 lg:mr-1.5" aria-hidden focusable="false" />
       <a href={href}>
-        <SrOnly>{label}: </SrOnly>
+        <span className="sr-only">{label}: </span>
         {children}
       </a>
     </span>
