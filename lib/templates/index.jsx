@@ -1,6 +1,7 @@
+import MailIcon from "heroicons/outline/mail.svg";
+import GithubLogo from "ionicons/dist/svg/logo-github.svg";
+import TwitterLogo from "ionicons/dist/svg/logo-twitter.svg";
 import React from "react";
-import { HiOutlineMail } from "react-icons/hi";
-import { IoLogoGithub, IoLogoTwitter } from "react-icons/io5";
 import Document from "../components/document";
 import Prose from "../components/prose";
 
@@ -28,17 +29,17 @@ export default function Index() {
         </LinkList>
         <LinkList>
           <li>
-            <LogoLink logo={HiOutlineMail} label="Email" href="mailto:iliana@buttslol.net">
+            <LogoLink logo={MailIcon} label="Email" href="mailto:iliana@buttslol.net">
               iliana@buttslol.net
             </LogoLink>
           </li>
           <li>
-            <LogoLink logo={IoLogoTwitter} label="Twitter" href="https://twitter.com/ilianathewitch">
+            <LogoLink logo={TwitterLogo} fill label="Twitter" href="https://twitter.com/ilianathewitch">
               @ilianathewitch
             </LogoLink>
           </li>
           <li>
-            <LogoLink logo={IoLogoGithub} label="GitHub" href="https://github.com/iliana">
+            <LogoLink logo={GithubLogo} fill label="GitHub" href="https://github.com/iliana">
               @iliana
             </LogoLink>
           </li>
@@ -70,10 +71,17 @@ function LinkList({ children }) {
   );
 }
 
-function LogoLink({ logo: Logo, href, label, children }) {
+function LogoLink({ logo: Logo, fill, href, label, children }) {
   return (
     <span className="whitespace-nowrap">
-      <Logo className="inline mr-1 lg:mr-1.5" aria-hidden focusable="false" />
+      <Logo
+        width="1em"
+        height="1em"
+        fill={fill ? "currentColor" : null}
+        className="inline mr-1 lg:mr-1.5"
+        aria-hidden
+        focusable="false"
+      />
       <a href={href}>
         <span className="sr-only">{label}: </span>
         {children}

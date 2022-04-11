@@ -64,6 +64,11 @@ module.exports = {
       },
       {
         test: /\.svg$/,
+        issuer: { not: entry.script },
+        use: ["@svgr/webpack"],
+      },
+      {
+        test: /\.svg$/,
         issuer: entry.script,
         use: {
           loader: "babel-loader",
