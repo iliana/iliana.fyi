@@ -6,18 +6,16 @@ const { renderToStaticMarkup } = require("react-dom/server");
 const sharpAdapter = require("responsive-loader/sharp");
 const { sources } = require("webpack");
 
+// This is more or less a cleaned up version of https://github.com/4Catalyzer/react-static-page-webpack-plugin.
 class TeraGenerator {
   /* eslint-disable-next-line class-methods-use-this */
   apply(compiler) {
-    compiler.hooks.thisCompilation.tap("StaticPageGenerator", (compilation) => {
-      compilation.hooks.afterOptimizeAssets.tap("StaticPageGenerator", (assets) => {
+    compiler.hooks.thisCompilation.tap("TeraGenerator", (compilation) => {
+      compilation.hooks.afterOptimizeAssets.tap("TeraGenerator", (assets) => {
         Object.entries(assets)
           .filter(([file]) => file.startsWith("../templates/") && file.endsWith(".js"))
           .forEach(([file, source]) => {
-            const html = renderToStaticMarkup(evalModule(source.source()).default()).replaceAll(
-              /{[%{].*&quot;.*[%}]}/g,
-              (match) => match.replaceAll("&quot;", '"')
-            );
+            const html = renderToStaticMarkup(evalModule(source.source()).default());
             compilation.emitAsset(
               path.format({
                 ...path.parse(file),
@@ -76,6 +74,16 @@ module.exports = {
       {
         test: /\.svg$/,
         issuer: entry.script,
+        // Ordinarily we would use the @svgr/webpack loader here, but the generated JSX is being used in our extremely
+        // minimal DOM JSX runtime. @svgr/webpack does two things we don't want:
+        //
+        // 1. It doesn't support `jsxRuntimeImport`, so it brings in either React or Preact -- we could work around
+        //    this with `template` but it's messy.
+        // 2. It mangles attributes like `stroke-width` into `strokeWidth`, which React un-mangles, but our tiny JSX
+        //    runtime (and also Preact) don't do.
+        //
+        // Using the SVGR Babel preset in this way does the part we actually want (converting SVGs to JSX) without
+        // these two problems.
         use: {
           loader: "babel-loader",
           options: {

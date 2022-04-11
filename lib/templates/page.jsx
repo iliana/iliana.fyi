@@ -17,7 +17,7 @@ export default function Page() {
           className="block text-sm lg:text-base xl:text-lg 2xl:text-xl my-1 lg:my-1.5 xl:my-2 2xl:my-2.5"
           dateTime="{{ page.date | date }}"
         >
-          {'{{ page.date | date(format="%B %e, %Y") }}'}
+          {"{{ page.date | date(format=`%B %e, %Y`) }}"}
         </time>
         {"{% endif %}"}
         <Prose>

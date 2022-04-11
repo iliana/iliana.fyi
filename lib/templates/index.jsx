@@ -50,11 +50,11 @@ export default function Index() {
         <Prose>{"{{ section.content | safe }}"}</Prose>
 
         <h2 className="sr-only">Blog</h2>
-        {'{% set blog = get_section(path="blog/_index.md") %}'}
+        {"{% set blog = get_section(path=`blog/_index.md`) %}"}
         <ul>
           {"{% for page in blog.pages %}"}
           <li className="text-sm lg:text-base xl:text-lg 2xl:text-xl my-3.5 lg:my-4 xl:my-5 2xl:my-6">
-            <time dateTime="{{ page.date | date }}">{'{{ page.date | date(format="%B %e, %Y") }}'}</time>
+            <time dateTime="{{ page.date | date }}">{"{{ page.date | date(format=`%B %e, %Y`) }}"}</time>
             <span className="sr-only">: </span>
             <Prose noMargins className="prose-a:font-extrabold">
               <a href="{{ page.path }}">{"{{ page.title | markdown(inline=true) | safe }}"}</a>
