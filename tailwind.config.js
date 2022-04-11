@@ -3,7 +3,7 @@ const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  content: ["./lib/**/*.jsx", "./content/**/*.md"],
+  content: ["./lib/**/*.{js,jsx}", "./content/**/*.md"],
   safelist: ["footnote-reference", "footnote-definition", "footnote-definition-label"],
   theme: {
     extend: {

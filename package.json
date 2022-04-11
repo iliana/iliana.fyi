@@ -9,11 +9,13 @@
     "@babel/eslint-plugin": "^7.17.7",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
+    "@svgr/babel-preset": "^6.2.0",
     "@tailwindcss/typography": "^0.5.2",
     "autoprefixer": "^10.4.4",
     "babel-loader": "^8.2.4",
     "concurrently": "^7.0.0",
     "css-loader": "^6.7.1",
+    "css.gg": "^2.0.0",
     "cssnano": "^5.1.7",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
@@ -34,6 +36,10 @@
     "htmlWhitespaceSensitivity": "ignore"
   },
   "eslintConfig": {
+    "ignorePatterns": [
+      "public/",
+      "static/"
+    ],
     "parser": "@babel/eslint-parser",
     "plugins": [
       "@babel"
@@ -62,7 +68,8 @@
     }
   },
   "browserslist": [
-    "defaults"
+    "defaults",
+    "not ie 11"
   ],
   "babel": {
     "presets": [

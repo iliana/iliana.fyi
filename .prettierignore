@@ -4,6 +4,5 @@
 /lib/code-light.css
 /node_modules
 /public
-/static/*.woff2
-/static/styles.css
+/static
 /templates/*.html
