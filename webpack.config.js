@@ -3,6 +3,7 @@ const path = require("path");
 const evalModule = require("eval");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { renderToStaticMarkup } = require("react-dom/server");
+const sharpAdapter = require("responsive-loader/sharp");
 const { sources } = require("webpack");
 
 class TeraGenerator {
@@ -49,7 +50,8 @@ module.exports = {
   entry,
   output: {
     path: path.join(__dirname, "static"),
-    assetModuleFilename: "[name][ext]",
+    publicPath: "/",
+    assetModuleFilename: "assets/[name][ext]",
   },
   module: {
     rules: [
@@ -61,6 +63,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+      },
+      {
+        test: /\.png$/,
+        use: { loader: "responsive-loader", options: { adapter: sharpAdapter, outputPath: "assets" } },
       },
       {
         test: /\.svg$/,

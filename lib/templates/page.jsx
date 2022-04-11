@@ -1,4 +1,5 @@
 import React from "react";
+import Avatar from "../components/avatar";
 import Document from "../components/document";
 import Prose from "../components/prose";
 
@@ -6,6 +7,7 @@ export default function Page() {
   return (
     <Document>
       <a href="/" className="text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-semibold">
+        <Avatar page />
         iliana etaoin
       </a>
 

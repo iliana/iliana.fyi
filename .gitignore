@@ -2,7 +2,7 @@
 /fonts/*.zip
 /node_modules
 /public
-/static/*.woff2
+/static/assets
 /static/script.js
 /static/styles.css
 /templates/*.html
