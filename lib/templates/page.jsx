@@ -1,6 +1,6 @@
 import React from "react";
-import Document from "../document";
-import Prose from "../prose";
+import Document from "../components/document";
+import Prose from "../components/prose";
 
 export default function Page() {
   return (

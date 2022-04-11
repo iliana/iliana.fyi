@@ -1,6 +1,6 @@
-import "./styles.css";
+import "../css/styles.css";
 import React from "react";
-import early from "./client/early";
+import early from "../client/early";
 
 export default function Document({ children }) {
   return (

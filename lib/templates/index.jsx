@@ -1,8 +1,8 @@
 import React from "react";
 import { HiOutlineMail } from "react-icons/hi";
 import { IoLogoGithub, IoLogoTwitter } from "react-icons/io5";
-import Document from "../document";
-import Prose from "../prose";
+import Document from "../components/document";
+import Prose from "../components/prose";
 
 export default function Index() {
   return (

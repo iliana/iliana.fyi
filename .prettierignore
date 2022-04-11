@@ -1,7 +1,7 @@
 /fonts/*.woff2
 /fonts/*.zip
-/lib/code-dark.css
-/lib/code-light.css
+/lib/css/code-dark.css
+/lib/css/code-light.css
 /node_modules
 /public
 /static
