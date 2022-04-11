@@ -77,7 +77,7 @@ function LogoLink({ logo: Logo, fill, href, label, children }) {
       <Logo
         width="1em"
         height="1em"
-        fill={fill ? "currentColor" : null}
+        fill={fill ? "currentColor" : "none"}
         className="inline mr-1 lg:mr-1.5"
         aria-hidden
         focusable="false"
