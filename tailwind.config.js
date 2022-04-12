@@ -8,8 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter subset", defaultTheme.fontFamily.sans],
-        mono: ["Iosevka subset", defaultTheme.fontFamily.mono],
+        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
       },
       colors: {
         purple: colors.violet,

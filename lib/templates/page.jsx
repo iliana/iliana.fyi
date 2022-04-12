@@ -7,7 +7,7 @@ export default function Page() {
   return (
     <Document>
       <a href="/" className="text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-semibold">
-        <Avatar page />
+        <Avatar size="page" />
         iliana etaoin
       </a>
 

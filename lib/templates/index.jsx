@@ -11,7 +11,7 @@ export default function Index() {
     <Document>
       <main>
         <h1 className="text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-0.5 lg:mb-1 xl:mb-1.5 2xl:mb-2.5 text-gray-900 dark:text-gray-100 font-semibold">
-          <Avatar index />
+          <Avatar size="index" />
           iliana etaoin
         </h1>
 
@@ -56,7 +56,7 @@ export default function Index() {
           <li className="text-sm lg:text-base xl:text-lg 2xl:text-xl my-3.5 lg:my-4 xl:my-5 2xl:my-6">
             <time dateTime="{{ page.date | date }}">{"{{ page.date | date(format=`%B %e, %Y`) }}"}</time>
             <span className="sr-only">: </span>
-            <Prose noMargins className="prose-a:font-extrabold">
+            <Prose margins={false} className="prose-a:font-extrabold">
               <a href="{{ page.path }}">{"{{ page.title | markdown(inline=true) | safe }}"}</a>
             </Prose>
           </li>

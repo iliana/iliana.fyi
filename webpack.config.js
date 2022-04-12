@@ -3,7 +3,6 @@ const path = require("path");
 const evalModule = require("eval");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { renderToStaticMarkup } = require("react-dom/server");
-const sharpAdapter = require("responsive-loader/sharp");
 const { sources } = require("webpack");
 
 // This is more or less a cleaned up version of https://github.com/4Catalyzer/react-static-page-webpack-plugin.
@@ -49,7 +48,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, "static"),
     publicPath: "/",
-    assetModuleFilename: "assets/[name][ext]",
+    assetModuleFilename: "assets/[hash][ext][query]",
   },
   module: {
     rules: [
@@ -63,8 +62,8 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
       },
       {
-        test: /\.png$/,
-        use: { loader: "responsive-loader", options: { adapter: sharpAdapter, outputPath: "assets" } },
+        test: /\.(png|webp)$/,
+        type: "asset/resource",
       },
       {
         test: /\.svg$/,

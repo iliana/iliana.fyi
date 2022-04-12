@@ -4,72 +4,38 @@
 
 @layer base {
   @font-face {
-    font-family: "Inter subset";
+    font-family: "Inter var";
     font-weight: 100 900;
     font-style: normal;
     font-display: swap;
-    src: url("../../fonts/Inter-roman.var.woff2") format("woff2");
+    font-feature-settings: "calt" off, "cv05" on, "cv08" on, "ss03" on;
+    src: url("inter-ui/Inter (web)/Inter-roman.var.woff2") format("woff2");
   }
 
   @font-face {
-    font-family: "Inter subset";
+    font-family: "Inter var";
     font-weight: 100 900;
     font-style: italic;
     font-display: swap;
-    src: url("../../fonts/Inter-italic.var.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Iosevka subset";
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-    src: url("../../fonts/iosevka-fixed-extended.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Iosevka subset";
-    font-weight: 400;
-    font-style: italic;
-    font-display: swap;
-    src: url("../../fonts/iosevka-fixed-extendeditalic.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Iosevka subset";
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-    src: url("../../fonts/iosevka-fixed-extendedbold.woff2") format("woff2");
-  }
-
-  @font-face {
-    font-family: "Iosevka subset";
-    font-weight: 700;
-    font-style: italic;
-    font-display: swap;
-    src: url("../../fonts/iosevka-fixed-extendedbolditalic.woff2") format("woff2");
+    font-feature-settings: "calt" off, "cv05" on, "cv08" on, "ss03" on;
+    src: url("inter-ui/Inter (web)/Inter-italic.var.woff2") format("woff2");
   }
 
   * {
-    @apply no-font-feature-case font-feature-inter;
-    font-feature-settings: var(--font-feature-case), var(--font-feature-inter);
+    --font-feature-case: "case" off;
+    font-feature-settings: var(--font-feature-case);
   }
 
-  /* also update components/prose.mjs */
-  a {
+  .anchor {
     @apply text-purple-600 dark:text-purple-400 font-medium underline;
   }
 
-  code,
-  kbd,
-  pre,
-  samp {
-    @apply no-font-feature-inter;
+  a {
+    @apply anchor;
   }
 
   .prose kbd.key {
-    @apply font-sans font-feature-inter text-sm lg:text-base xl:text-lg 2xl:text-xl px-1 lg:px-1.5 py-0.5;
+    @apply font-sans text-sm lg:text-base xl:text-lg 2xl:text-xl px-1 lg:px-1.5 py-0.5;
     @apply border rounded border-gray-400 bg-gray-200 dark:border-gray-600 dark:bg-gray-800;
   }
 }
@@ -96,18 +62,6 @@
 @layer utilities {
   .font-feature-case {
     --font-feature-case: "case" on;
-  }
-
-  .no-font-feature-case {
-    --font-feature-case: "case" off;
-  }
-
-  .font-feature-inter {
-    --font-feature-inter: "cv05" on, "cv08" on, "ss03" on;
-  }
-
-  .no-font-feature-inter {
-    --font-feature-inter: "cv05" off, "cv08" off, "ss03" off;
   }
 
   @import "code-light.css";
