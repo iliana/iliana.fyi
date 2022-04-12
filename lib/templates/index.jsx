@@ -69,7 +69,9 @@ export default function Index() {
 
 function LinkList({ children }) {
   return (
-    <ul className="flex flex-col flex-wrap sm:flex-row gap-x-3 lg:gap-x-4.5 xl:gap-x-5 2xl:gap-x-6">{children}</ul>
+    <ul className="sm:space-x-3 lg:space-x-4.5 xl:space-x-5 2xl:space-x-6">
+      {children.map((child) => React.cloneElement(child, { className: "sm:inline" }))}
+    </ul>
   );
 }
 

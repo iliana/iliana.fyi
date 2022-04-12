@@ -3,8 +3,8 @@ const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  content: ["./lib/**/*.{js,jsx}", "./content/**/*.md"],
-  safelist: ["footnote-reference", "footnote-definition", "footnote-definition-label"],
+  content: ["./lib/**/*.{js,jsx}"],
+  safelist: ["font-feature-case", "footnote-reference", "footnote-definition", "footnote-definition-label"],
   theme: {
     extend: {
       fontFamily: {
