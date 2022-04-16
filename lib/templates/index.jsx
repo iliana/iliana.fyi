@@ -1,3 +1,4 @@
+import c from "classnames/dedupe";
 import MailIcon from "heroicons/outline/mail.svg";
 import GithubLogo from "ionicons/dist/svg/logo-github.svg";
 import TwitterLogo from "ionicons/dist/svg/logo-twitter.svg";
@@ -10,7 +11,13 @@ export default function Index() {
   return (
     <Document>
       <main>
-        <h1 className="text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-0.5 lg:mb-1 xl:mb-1.5 2xl:mb-2.5 text-gray-900 dark:text-gray-100 font-semibold">
+        <h1
+          className={c(
+            "text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl",
+            "mb-0.5 lg:mb-1 xl:mb-1.5 2xl:mb-2.5",
+            "text-gray-900 dark:text-gray-100 font-semibold"
+          )}
+        >
           <Avatar size="index" />
           iliana etaoin
         </h1>

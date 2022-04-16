@@ -1,3 +1,4 @@
+import c from "classnames/dedupe";
 import "../css/styles.css";
 import React from "react";
 import early from "../client/early";
@@ -21,7 +22,14 @@ export default function Document({ children }) {
         {/* eslint-disable-next-line react/no-danger */}
         <script dangerouslySetInnerHTML={{ __html: `!${early}();` }} />
       </head>
-      <body className="text-gray-700 dark:text-gray-300 bg-white dark:bg-black text-base lg:text-lg xl:text-xl 2xl:text-2xl leading-relaxed lg:leading-relaxed xl:leading-relaxed 2xl:leading-relaxed p-4 lg:p-6 xl:p-7 2xl:p-8">
+      <body
+        className={c(
+          "text-gray-700 dark:text-gray-300 bg-white dark:bg-black",
+          "text-base lg:text-lg xl:text-xl 2xl:text-2xl",
+          "leading-relaxed lg:leading-relaxed xl:leading-relaxed 2xl:leading-relaxed",
+          "p-4 lg:p-6 xl:p-7 2xl:p-8"
+        )}
+      >
         <div className="2xl:container 2xl:mx-auto">{children}</div>
         <script defer src="/script.js" />
         <script defer data-domain="iliana.fyi" src="https://plausible.io/js/script.js" />

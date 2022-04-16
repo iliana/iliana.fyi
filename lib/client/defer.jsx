@@ -2,8 +2,8 @@
 /* eslint-disable react/no-unknown-property, react/react-in-jsx-scope */
 /* global document, window, CustomEvent */
 
-import SunIcon from "heroicons/outline/sun.svg";
 import MoonIcon from "heroicons/outline/moon.svg";
+import SunIcon from "heroicons/outline/sun.svg";
 import { h } from "../jsx-runtime";
 
 const sun = <SunIcon height="1em" width="1em" aria-hidden focusable={false} />;
