@@ -1,13 +1,20 @@
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "h" }] */
+/* eslint-disable react/no-unknown-property, react/react-in-jsx-scope */
 /* global document, window, CustomEvent */
 
 import SunIcon from "heroicons/outline/sun.svg";
-import MoonIcon from "heroicons/solid/moon.svg";
+import MoonIcon from "heroicons/outline/moon.svg";
 import { h } from "../jsx-runtime";
 
-const iconAttr = { height: "1em", width: "1em", "aria-hidden": true, focusable: false };
-const sun = h(SunIcon(), iconAttr);
-const moon = h(MoonIcon(), iconAttr);
-const button = h("button", { type: "button", class: "float-right text-2xl xl:text-3xl" }, sun, moon);
+const sun = <SunIcon height="1em" width="1em" aria-hidden focusable={false} />;
+const moon = <MoonIcon height="1em" width="1em" aria-hidden focusable={false} />;
+const button = (
+  <button type="button" class="float-right text-2xl xl:text-3xl">
+    {sun}
+    {moon}
+  </button>
+);
+
 const ev = "update-color-scheme";
 const isDark = () => document.documentElement.classList.contains("dark");
 const update = (toggle) => {

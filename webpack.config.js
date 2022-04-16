@@ -31,7 +31,7 @@ class TeraGenerator {
 }
 
 const entry = {
-  script: path.join(__dirname, "lib", "client", "defer.js"),
+  script: path.join(__dirname, "lib", "client", "defer.jsx"),
 };
 fs.readdirSync(path.join(__dirname, "lib", "templates"))
   .filter((p) => path.extname(p) === ".jsx")
