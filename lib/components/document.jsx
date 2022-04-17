@@ -1,4 +1,5 @@
 import c from "classnames/dedupe";
+import font from "inter-ui/Inter (web)/Inter-roman.var.woff2";
 import "../css/styles.css";
 import React from "react";
 import early from "../client/early";
@@ -16,6 +17,7 @@ export default function Document({ children }) {
           {"{{ page.title | markdown(inline=true) | striptags }}"} &mdash; {"{% endif %}"}
           iliana.fyi
         </title>
+        <link rel="preload" href={font} as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="icon" href="/netscape.gif" />
         <link rel="stylesheet" href="/styles.css" />
         <link rel="alternate" type="application/atom+xml" href="/atom.xml" />

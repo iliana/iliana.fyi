@@ -68,6 +68,7 @@ module.exports = {
       {
         test: /\.woff2$/,
         use: [path.join(__dirname, "lib", "subset-loader.js")],
+        type: "asset/resource",
       },
       {
         test: /\.svg$/,
