@@ -66,6 +66,10 @@ module.exports = {
         type: "asset/resource",
       },
       {
+        test: /\.woff2$/,
+        use: [path.join(__dirname, "lib", "subset-loader.js")],
+      },
+      {
         test: /\.svg$/,
         issuer: { not: entry.script },
         use: ["@svgr/webpack"],
