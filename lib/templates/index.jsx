@@ -39,19 +39,19 @@ export default function Index() {
         </LinkList>
         <LinkList>
           <LinkListItem>
-            <LogoLink logo={MailIcon} label="Email" href="mailto:iliana@buttslol.net">
+            <IconLink icon={MailIcon} label="Email" href="mailto:iliana@buttslol.net">
               iliana@buttslol.net
-            </LogoLink>
+            </IconLink>
           </LinkListItem>
           <LinkListItem>
-            <LogoLink logo={TwitterLogo} fill label="Twitter" href="https://twitter.com/ilianathewitch">
+            <IconLink icon={TwitterLogo} fill label="Twitter" href="https://twitter.com/ilianathewitch">
               @ilianathewitch
-            </LogoLink>
+            </IconLink>
           </LinkListItem>
           <LinkListItem>
-            <LogoLink logo={GithubLogo} fill label="GitHub" href="https://github.com/iliana">
+            <IconLink icon={GithubLogo} fill label="GitHub" href="https://github.com/iliana">
               @iliana
-            </LogoLink>
+            </IconLink>
           </LinkListItem>
         </LinkList>
 
@@ -72,9 +72,9 @@ export default function Index() {
         </ul>
 
         <p className="text-sm lg:text-base xl:text-lg 2xl:text-xl">
-          <LogoLink logo={RssIcon} logoClassName="text-orange-600 dark:text-orange-400" href="/atom.xml">
+          <IconLink icon={RssIcon} iconClassName="text-orange-600 dark:text-orange-400" href="/atom.xml">
             Atom feed
-          </LogoLink>
+          </IconLink>
         </p>
       </main>
     </Document>
@@ -89,14 +89,14 @@ function LinkListItem({ children }) {
   return <li className="sm:inline">{children}</li>;
 }
 
-function LogoLink({ logo: Logo, logoClassName, fill, href, label, children }) {
+function IconLink({ icon: Icon, iconClassName, fill, href, label, children }) {
   return (
     <span className="whitespace-nowrap">
-      <Logo
+      <Icon
         width="1em"
         height="1em"
         fill={fill ? "currentColor" : "none"}
-        className={c("inline mr-1 lg:mr-1.5", logoClassName)}
+        className={c("inline mr-1 lg:mr-1.5", iconClassName)}
         aria-hidden
         focusable="false"
       />
