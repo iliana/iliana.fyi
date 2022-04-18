@@ -1,5 +1,6 @@
 import c from "classnames/dedupe";
 import MailIcon from "heroicons/outline/mail.svg";
+import RssIcon from "heroicons/outline/rss.svg";
 import GithubLogo from "ionicons/dist/svg/logo-github.svg";
 import TwitterLogo from "ionicons/dist/svg/logo-twitter.svg";
 import React from "react";
@@ -69,6 +70,12 @@ export default function Index() {
           </li>
           {"{% endfor %}"}
         </ul>
+
+        <p className="text-sm lg:text-base xl:text-lg 2xl:text-xl">
+          <LogoLink logo={RssIcon} logoClassName="text-orange-600 dark:text-orange-400" href="/atom.xml">
+            Atom feed
+          </LogoLink>
+        </p>
       </main>
     </Document>
   );
@@ -82,19 +89,19 @@ function LinkList({ children }) {
   );
 }
 
-function LogoLink({ logo: Logo, fill, href, label, children }) {
+function LogoLink({ logo: Logo, logoClassName, fill, href, label, children }) {
   return (
     <span className="whitespace-nowrap">
       <Logo
         width="1em"
         height="1em"
         fill={fill ? "currentColor" : "none"}
-        className="inline mr-1 lg:mr-1.5"
+        className={c("inline mr-1 lg:mr-1.5", logoClassName)}
         aria-hidden
         focusable="false"
       />
       <a href={href}>
-        <span className="sr-only">{label}: </span>
+        {label ? <span className="sr-only">{label}: </span> : null}
         {children}
       </a>
     </span>
