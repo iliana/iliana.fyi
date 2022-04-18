@@ -82,7 +82,7 @@ export default function Index() {
 }
 
 function LinkList({ children }) {
-  return <ul className="sm:space-x-3 lg:space-x-4.5 xl:space-x-5 2xl:space-x-6">{children}</ul>;
+  return <ul className="sm:space-x-3 lg:space-x-4 xl:space-x-5 2xl:space-x-6">{children}</ul>;
 }
 
 function LinkListItem({ children }) {
