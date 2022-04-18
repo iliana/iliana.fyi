@@ -46,7 +46,7 @@ export default function Avatar({ size }) {
         sizes={sizes.join(", ")}
         src={images.png[96]}
         className={c("rounded-full inline align-top", sizeClasses)}
-        alt=""
+        alt="FIXME"
       />
     </picture>
   );

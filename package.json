@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "webpack --node-env production && zola build",
+    "build": "webpack --node-env production && zola build && lib/fix.sh",
     "dev": "concurrently --kill-others \"zola serve --drafts\" \"webpack --watch\"",
     "fix": "prettier -w . && eslint --ext .js,.jsx --fix ."
   },
