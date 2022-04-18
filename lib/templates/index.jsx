@@ -24,35 +24,35 @@ export default function Index() {
         </h1>
 
         <LinkList>
-          <li>
+          <LinkListItem>
             <a href="https://pronoun.is/xie/xer?or=she">
               xie/xer
               <span className="sr-only"> pronouns</span>
             </a>
-          </li>
-          <li>
+          </LinkListItem>
+          <LinkListItem>
             <a href="/lowercase/">always lowercase</a>
-          </li>
-          <li>
+          </LinkListItem>
+          <LinkListItem>
             <a href="/etaoin.flac">pronounced /ɪliˈɑnə ɛˈtiːn/</a>
-          </li>
+          </LinkListItem>
         </LinkList>
         <LinkList>
-          <li>
+          <LinkListItem>
             <LogoLink logo={MailIcon} label="Email" href="mailto:iliana@buttslol.net">
               iliana@buttslol.net
             </LogoLink>
-          </li>
-          <li>
+          </LinkListItem>
+          <LinkListItem>
             <LogoLink logo={TwitterLogo} fill label="Twitter" href="https://twitter.com/ilianathewitch">
               @ilianathewitch
             </LogoLink>
-          </li>
-          <li>
+          </LinkListItem>
+          <LinkListItem>
             <LogoLink logo={GithubLogo} fill label="GitHub" href="https://github.com/iliana">
               @iliana
             </LogoLink>
-          </li>
+          </LinkListItem>
         </LinkList>
 
         <Prose>{"{{ section.content | safe }}"}</Prose>
@@ -82,11 +82,11 @@ export default function Index() {
 }
 
 function LinkList({ children }) {
-  return (
-    <ul className="sm:space-x-3 lg:space-x-4.5 xl:space-x-5 2xl:space-x-6">
-      {children.map((child) => React.cloneElement(child, { className: "sm:inline" }))}
-    </ul>
-  );
+  return <ul className="sm:space-x-3 lg:space-x-4.5 xl:space-x-5 2xl:space-x-6">{children}</ul>;
+}
+
+function LinkListItem({ children }) {
+  return <li className="sm:inline">{children}</li>;
 }
 
 function LogoLink({ logo: Logo, logoClassName, fill, href, label, children }) {
