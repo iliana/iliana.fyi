@@ -19,7 +19,7 @@ export default function Index() {
             "text-gray-900 dark:text-gray-100 font-semibold"
           )}
         >
-          <Avatar size="index" />
+          <Avatar size="index" href="/iliana.png" />
           iliana etaoin
         </h1>
 

@@ -20,12 +20,16 @@ Object.keys(images).forEach((type) => {
     .join(", ");
 });
 
-export default function Avatar({ size }) {
+export default function Avatar({ size, href }) {
   const { screens } = resolveConfig(tailwindConfig).theme;
 
   const sizeClasses = {
-    index: "h-8 lg:h-9 xl:h-10 2xl:h-12 w-8 lg:w-9 xl:w-10 2xl:w-12 mr-2.5 lg:mr-3 xl:mr-3.5 2xl:mr-4",
-    page: "h-7 xl:h-8 2xl:h-9 w-7 xl:w-8 2xl:w-9 mr-2.5 mr-2 xl:mr-2.5 2xl:mr-3",
+    index: "h-8 lg:h-9 xl:h-10 2xl:h-12 w-8 lg:w-9 xl:w-10 2xl:w-12",
+    page: "h-7 xl:h-8 2xl:h-9 w-7 xl:w-8 2xl:w-9",
+  }[size];
+  const marginClasses = {
+    index: "mr-2.5 lg:mr-3 xl:mr-3.5 2xl:mr-4",
+    page: "mr-2 xl:mr-2.5 2xl:mr-3",
   }[size];
 
   const sizes = sizeClasses
@@ -38,16 +42,24 @@ export default function Avatar({ size }) {
     });
   sizes.reverse();
 
-  return (
+  const picture = (
     <picture>
       <source srcSet={images.webp.srcSet} sizes={sizes.join(", ")} type="image/webp" />
       <img
         srcSet={images.png.srcSet}
         sizes={sizes.join(", ")}
         src={images.png[96]}
-        className={c("rounded-full inline align-top", sizeClasses)}
+        className={c("rounded-full inline align-top", sizeClasses, { [marginClasses]: href === undefined })}
         alt="FIXME"
       />
     </picture>
+  );
+
+  return href ? (
+    <a href={href} className={marginClasses}>
+      {picture}
+    </a>
+  ) : (
+    picture
   );
 }
