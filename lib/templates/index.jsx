@@ -55,7 +55,9 @@ export default function Index() {
           </LinkListItem>
         </LinkList>
 
-        <Prose className="my-5 lg:my-6 xl:my-7 2xl:my-8">{"{{ section.content | safe }}"}</Prose>
+        <Prose className="mt-5 lg:mt-6 xl:mt-7 2xl:mt-8 mb-8 lg:mb-9 xl:mb-10 2xl:mb-12">
+          {"{{ section.content | safe }}"}
+        </Prose>
 
         <h2 className="sr-only">Blog</h2>
         <ul>
