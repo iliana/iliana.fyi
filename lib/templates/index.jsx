@@ -15,7 +15,7 @@ export default function Index() {
         <h1
           className={c(
             "text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl",
-            "mb-0.5 lg:mb-1 xl:mb-1.5 2xl:mb-2.5",
+            "mb-1 lg:mb-1.5 xl:mb-2 2xl:mb-2.5",
             "text-gray-900 dark:text-gray-100 font-semibold"
           )}
         >
