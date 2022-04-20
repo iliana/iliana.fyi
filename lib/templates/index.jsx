@@ -55,7 +55,7 @@ export default function Index() {
           </LinkListItem>
         </LinkList>
 
-        <Prose>{"{{ section.content | safe }}"}</Prose>
+        <Prose className="my-5 lg:my-6 xl:my-7 2xl:my-8">{"{{ section.content | safe }}"}</Prose>
 
         <h2 className="sr-only">Blog</h2>
         <ul>
@@ -68,9 +68,9 @@ export default function Index() {
               <span className="sr-only">: </span>
             </p>
             {"{% if page.components[0] == `links` %}"}
-            <Prose margins={false}>{"{{ page.content | safe }}"}</Prose>
+            <Prose>{"{{ page.content | safe }}"}</Prose>
             {"{% else %}"}
-            <Prose margins={false} className="prose-a:font-extrabold">
+            <Prose className="prose-a:font-extrabold">
               <a href="{{ page.path }}">{"{{ page.title | markdown(inline=true) | safe }}"}</a>
             </Prose>
             {"{% endif %}"}

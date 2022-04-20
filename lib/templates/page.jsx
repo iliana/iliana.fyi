@@ -20,7 +20,7 @@ export default function Page() {
           {"{{ page.date | date(format=`%B %e, %Y`) }}"}
         </time>
         {"{% endif %}"}
-        <Prose>
+        <Prose className="my-5 lg:my-6 xl:my-7 2xl:my-8">
           <h1>{"{{ page.title | markdown(inline=true) | safe }}"}</h1>
           {"{{ macros::markdown_hacks(input=page.content) }}"}
         </Prose>
