@@ -1,7 +1,6 @@
 +++
 title = 'Oxide Computer Company: "Benefits as a reflection of values"'
 date = 2022-04-20T12:00:00-07:00
-draft = true
 
 [extra]
 where = "Oxide Computer Company blog"
