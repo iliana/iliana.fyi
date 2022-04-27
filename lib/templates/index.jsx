@@ -45,17 +45,17 @@ export default function Index() {
             </IconLink>
           </LinkListItem>
           <LinkListItem>
-            <IconLink icon={IcosahedronIcon} label="Fediverse" href="https://icosahedron.website/@iliana">
+            <IconLink icon={IcosahedronIcon} label="Fediverse" href="https://icosahedron.website/@iliana" rel="me">
               @iliana@icosahedron.website
             </IconLink>
           </LinkListItem>
           <LinkListItem>
-            <IconLink icon={TwitterLogo} fill label="Twitter" href="https://twitter.com/ilianathewitch">
+            <IconLink icon={TwitterLogo} fill label="Twitter" href="https://twitter.com/ilianathewitch" rel="me">
               @ilianathewitch
             </IconLink>
           </LinkListItem>
           <LinkListItem>
-            <IconLink icon={GithubLogo} fill label="GitHub" href="https://github.com/iliana">
+            <IconLink icon={GithubLogo} fill label="GitHub" href="https://github.com/iliana" rel="me">
               @iliana
             </IconLink>
           </LinkListItem>
@@ -104,7 +104,7 @@ function LinkListItem({ children }) {
   return <li className="md:inline">{children}</li>;
 }
 
-function IconLink({ icon: Icon, iconClassName, fill, href, label, children }) {
+function IconLink({ icon: Icon, iconClassName, fill, href, rel, label, children }) {
   return (
     <span className="whitespace-nowrap">
       <Icon
@@ -115,7 +115,7 @@ function IconLink({ icon: Icon, iconClassName, fill, href, label, children }) {
         aria-hidden
         focusable="false"
       />
-      <a href={href}>
+      <a href={href} rel={rel}>
         {label ? <span className="sr-only">{label}: </span> : null}
         {children}
       </a>
