@@ -7,6 +7,7 @@ import React from "react";
 import Avatar from "../components/avatar";
 import Document from "../components/document";
 import Prose from "../components/prose";
+import IcosahedronIcon from "./icosahedron.svg";
 
 export default function Index() {
   return (
@@ -41,6 +42,11 @@ export default function Index() {
           <LinkListItem>
             <IconLink icon={MailIcon} label="Email" href="mailto:iliana@buttslol.net">
               iliana@buttslol.net
+            </IconLink>
+          </LinkListItem>
+          <LinkListItem>
+            <IconLink icon={IcosahedronIcon} label="Fediverse" href="https://icosahedron.website/@iliana">
+              @iliana@icosahedron.website
             </IconLink>
           </LinkListItem>
           <LinkListItem>
@@ -91,11 +97,11 @@ export default function Index() {
 }
 
 function LinkList({ children }) {
-  return <ul className="sm:space-x-3 lg:space-x-4 xl:space-x-5 2xl:space-x-6">{children}</ul>;
+  return <ul className="md:space-x-3 lg:space-x-4 xl:space-x-5 2xl:space-x-6">{children}</ul>;
 }
 
 function LinkListItem({ children }) {
-  return <li className="sm:inline">{children}</li>;
+  return <li className="md:inline">{children}</li>;
 }
 
 function IconLink({ icon: Icon, iconClassName, fill, href, label, children }) {
