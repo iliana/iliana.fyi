@@ -5,18 +5,15 @@ import React from "react";
 import early from "../client/early";
 
 export default function Document({ children }) {
+  const title = ["section", "page"]
+    .map((x) => `{% if ${x}.title %}{{ ${x}.title | markdown(inline=true) | striptags }} — {% endif %}`)
+    .join("");
   return (
     <html lang="en" className="no-js">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width" />
-        <title>
-          {"{% if section.title %}"}
-          {"{{ section.title | markdown(inline=true) | striptags }}"} &mdash; {"{% endif %}"}
-          {"{% if page.title %}"}
-          {"{{ page.title | markdown(inline=true) | striptags }}"} &mdash; {"{% endif %}"}
-          iliana.fyi
-        </title>
+        <title>{`${title}iliana.fyi`}</title>
         <link rel="preload" href={font} as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="icon" href="/netscape.gif" />
         <link rel="stylesheet" href="/styles.css" />
