@@ -24,7 +24,7 @@
 		<title>{{ page.title | markdown(inline=true) | striptags }}</title>
 		<published>{{ page.date | date(format="%+") }}</published>
 		<updated>{{ page.updated | default(value=page.date) | date(format="%+") }}</updated>
-		<link href="{{ page.extra | get(key=`link`, default=page.permalink) | safe }}" type="text/html"/>
+		<link href="{{ page.extra | get(key=`link`, default=page.permalink) | safe }}" rel="alternate" type="text/html"/>
 		<id>{{ page.permalink | safe }}</id>
 		{% if page.components[0] == "links" -%}
 		<summary type="html">{{ page.content }}</summary>
