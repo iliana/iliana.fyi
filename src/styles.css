@@ -21,10 +21,9 @@
     src: url("inter-ui/Inter (web)/Inter-italic.var.woff2") format("woff2");
   }
 
-  * {
+  :root {
+    @accent violet;
     --font-feature-case: "case" off;
-    font-feature-settings: var(--font-feature-case);
-
     --hl-italic-light: normal;
     --hl-bold-light: normal;
     --hl-underline-light: none;
@@ -33,32 +32,31 @@
     --hl-underline-dark: none;
   }
 
-  .anchor {
-    @apply font-medium text-purple-600 underline dark:text-purple-400;
+  * {
+    font-feature-settings: var(--font-feature-case);
   }
 
   a {
-    @apply anchor;
+    @apply font-medium text-accent-600 underline dark:text-accent-400;
   }
 }
 
 @layer components {
   .prose {
-    @apply prose-a:anchor dark:prose-invert lg:prose-lg xl:prose-xl 2xl:prose-2xl;
+    @apply dark:prose-invert lg:prose-lg xl:prose-xl 2xl:prose-2xl;
 
+    /* round accented blocks */
     pre {
-      @apply rounded-md border border-purple-300/50 bg-purple-200/20 dark:border-purple-700/50 dark:bg-purple-800/20 xl:rounded-lg;
+      @apply border border-accent-300/50 bg-accent-200/20 dark:border-accent-700/50 dark:bg-accent-800/20;
     }
 
-    pre[data-syntax-highlighted] span {
+    code[data-syntax-highlighted] span {
       color: var(--hl-color-light);
       font-style: var(--hl-italic-light);
       font-weight: var(--hl-bold-light);
       text-decoration: var(--hl-underline-light);
-    }
 
-    @media (prefers-color-scheme: dark) {
-      pre[data-syntax-highlighted] span {
+      @media (prefers-color-scheme: dark) {
         color: var(--hl-color-dark);
         font-style: var(--hl-italic-dark);
         font-weight: var(--hl-bold-dark);
@@ -69,34 +67,39 @@
     kbd.key {
       @apply rounded border border-gray-400 bg-gray-200 px-1 py-0.5 font-sans text-sm dark:border-gray-600 dark:bg-gray-800 lg:px-1.5 lg:text-base xl:text-lg 2xl:text-xl;
     }
+  }
 
-    a[data-footnote-ref] {
-      @apply no-underline;
-    }
+  section[data-footnotes] {
+    @apply prose-sm lg:prose-base xl:prose-lg 2xl:prose-xl;
+  }
 
-    section[data-footnotes] ol {
+  section[data-footnotes] {
+    @apply border-t border-gray-400 dark:border-gray-600;
+
+    ol {
       @apply list-none p-0;
-      counter-reset: item;
     }
 
-    section[data-footnotes] li {
+    li {
       @apply relative p-0;
-      counter-increment: item;
     }
 
-    section[data-footnotes] p {
-      @apply pl-3.5 text-sm lg:pl-4 lg:text-base xl:pl-5 xl:text-lg 2xl:pl-6 2xl:text-xl;
+    p {
+      @apply pl-3.5 leading-relaxed lg:pl-4 xl:pl-5 2xl:pl-6;
     }
+  }
 
-    a[data-footnote-backref]:before {
-      @apply absolute top-[-.1em] left-0 text-[75%];
-      content: counter(item);
-    }
+  a[data-footnote-ref] {
+    @apply no-underline;
+  }
+
+  a[data-footnote-backref]:before {
+    top: calc(2em / 11);
+    content: counter(list-item);
+    @apply absolute left-0 text-[75%];
   }
 }
 
-@layer utilities {
-  .font-feature-case {
-    --font-feature-case: "case" on;
-  }
+.font-feature-case {
+  --font-feature-case: "case" on;
 }

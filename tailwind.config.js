@@ -1,17 +1,24 @@
 const typography = require("@tailwindcss/typography");
-const colors = require("tailwindcss/colors");
-const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: [".eleventy.js", "./content/**/*.html", "./src/**/*.{js,jsx}"],
-  safelist: ["font-feature-case"],
   theme: {
+    fontFamily: {
+      sans: ["Inter var", "sans-serif"],
+    },
     extend: {
-      fontFamily: {
-        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
-      },
-      colors: {
-        purple: colors.violet,
+      colors: ({ colors }) => ({
+        accent: Object.fromEntries(
+          Object.keys(colors.violet).map((shade) => [shade, `rgb(var(--color-accent-${shade}) / <alpha-value>)`])
+        ),
+      }),
+      typography: {
+        DEFAULT: {
+          css: {
+            "--tw-prose-links": "rgb(var(--color-accent-600))",
+            "--tw-prose-invert-links": "rgb(var(--color-accent-400))",
+          },
+        },
       },
     },
   },

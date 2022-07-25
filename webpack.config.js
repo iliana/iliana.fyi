@@ -19,8 +19,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const RemoveEmptyScriptsPlugin = require("webpack-remove-empty-scripts");
 
 const entry = {
-  defer: path.join(__dirname, "src", "defer.jsx"),
-  early: path.join(__dirname, "src", "early.js"),
+  theme: path.join(__dirname, "src", "theme.jsx"),
   styles: path.join(__dirname, "src", "styles.css"),
 };
 
@@ -55,7 +54,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        issuer: entry.defer,
+        issuer: entry.theme,
         // Ordinarily we would use the @svgr/webpack loader here, but the generated JSX is being used in our extremely
         // minimal DOM JSX runtime. @svgr/webpack does two things we don't want:
         //

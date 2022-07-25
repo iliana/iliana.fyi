@@ -14,44 +14,54 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-// This script is run at the end of page load. It creates and wires up the color scheme toggle button.
-
 /* eslint no-unused-vars: ["error", { "varsIgnorePattern": "(MoonIcon|SunIcon|h)" }] */
-/* global document, window, CustomEvent */
+/* global document, window */
 
 import MoonIcon from "heroicons/outline/moon.svg";
 import SunIcon from "heroicons/outline/sun.svg";
 import { h } from "./xieact";
 
 const button = (<button type="button" class="float-right text-2xl xl:text-3xl">
-  <SunIcon class="hidden h-[1em] w-[1em] dark:block" focusable={false} />
-  <MoonIcon class="h-[1em] w-[1em] dark:hidden" focusable={false} />
+  <SunIcon focusable={false} class="hidden h-[1em] w-[1em] dark:block" />
+  <MoonIcon focusable={false} class="h-[1em] w-[1em] dark:hidden" />
 </button>)();
-const dispatch = (toggle) => {
-  document.dispatchEvent(new CustomEvent("update-color-scheme", { detail: toggle }));
+
+const changeTitle = (isDark) => {
+  // eslint-disable-next-line no-multi-assign
+  button.title = button.ariaLabel = isDark ? "Use light mode" : "Use dark mode";
+  return isDark;
 };
 
-// update the button title/aria-label when the color scheme changes
-document.addEventListener("update-color-scheme", () => {
-  // eslint-disable-next-line no-multi-assign
-  button.title = button.ariaLabel = document.documentElement.classList.contains("dark") ? "Light mode" : "Dark mode";
-});
-// ensure this listener runs once
-dispatch();
-
-// when the color scheme system preference changes, dispatch an event
-window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", dispatch);
-
-// event handler for explicit user toggle
-button.addEventListener("click", () => {
-  dispatch(true);
-
-  // try to set the user's explicit preference in local storage
+const handler = () => {
+  let localScheme;
   try {
-    window.localStorage.color = document.documentElement.classList.contains("dark") ? "dark" : "light";
-  } catch (e) {
+    localScheme = window.localStorage.color;
+  } catch {
+    // nothing
+  }
+
+  if (
+    changeTitle(
+      localScheme === "dark" || (localScheme !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches)
+    )
+  ) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+};
+
+handler();
+document.documentElement.classList.remove("no-js");
+
+button.addEventListener("click", () => {
+  try {
+    window.localStorage.color = changeTitle(document.documentElement.classList.toggle("dark")) ? "dark" : "light";
+  } catch {
     // nothing
   }
 });
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", handler);
 
-document.querySelector("body>div").prepend(button);
+// we can get away with `firstChild` instead of `firstElementChild` because we minify html
+document.body.firstChild.prepend(button);

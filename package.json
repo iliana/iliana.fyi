@@ -17,11 +17,14 @@
     "cssnano": "^5.1.7",
     "dayjs": "^1.11.4",
     "fast-glob": "^3.2.11",
+    "hast-util-select": "^5.0.2",
+    "hast-util-to-string": "^2.0.0",
     "heroicons": "^1.0.6",
     "html-minifier": "^4.0.0",
     "inter-ui": "^3.19.3",
     "ionicons": "^6.0.1",
     "mini-css-extract-plugin": "^2.6.0",
+    "postcss": "^8.4.16",
     "postcss-loader": "^7.0.0",
     "rehype-raw": "^6.1.1",
     "rehype-stringify": "^9.0.3",
@@ -33,7 +36,6 @@
     "svgo": "^2.8.0",
     "tailwindcss": "^3.0.23",
     "unified": "^10.1.2",
-    "unist-util-visit": "^4.1.0",
     "webpack": "^5.71.0",
     "webpack-cli": "^4.9.2",
     "webpack-remove-empty-scripts": "^0.8.1"
@@ -83,12 +85,17 @@
     }
   },
   "browserslist": [
-    "defaults"
+    "defaults and supports arrow-functions"
   ],
   "babel": {
     "presets": [
       "@babel/preset-env",
-      "@babel/preset-react"
+      [
+        "@babel/preset-react",
+        {
+          "pragma": "h"
+        }
+      ]
     ]
   }
 }

@@ -33,83 +33,66 @@ function rehypeMultiShikiDrifting({ themes }) {
   );
 
   return async (tree) => {
-    const { visit } = await import("unist-util-visit");
+    const { selectAll } = await import("hast-util-select");
+    const { toString } = await import("hast-util-to-string");
     const highlighters = await highlightersPromise;
-    visit(
-      tree,
-      // filter
-      (node) =>
-        node.type === "element" &&
-        node.tagName === "pre" &&
-        node.children.length === 1 &&
-        node.children[0].type === "element" &&
-        node.children[0].tagName === "code" &&
-        node.children[0].properties.className &&
-        node.children[0].properties.className.some((c) => c.startsWith("language-")) &&
-        node.children[0].children.length === 1 &&
-        node.children[0].children[0].type === "text",
-      // map
-      (node) => {
-        const code = node.children[0].children[0].value;
-        const language = node.children[0].properties.className
-          .find((c) => c.startsWith("language-"))
-          .slice("language-".length);
-        const tokenized = [];
-        highlighters.forEach(({ label, highlighter }) => {
-          highlighter.codeToThemedTokens(code, language).forEach((line, i) => {
-            if (!tokenized[i]) {
-              tokenized[i] = { content: line.map(({ content }) => content).join(""), themes: {} };
-            }
-            let pos = 0;
-            tokenized[i].themes[label] = line.map((token) => {
-              const newToken = { pos, ...token };
-              pos += token.content.length;
-              return newToken;
-            });
+    selectAll("code[class*=language-]", tree).forEach((node) => {
+      const language = node.properties.className.find((c) => c.startsWith("language-"))?.slice("language-".length);
+      if (!language) {
+        return;
+      }
+      const tokenized = [];
+      highlighters.forEach(({ label, highlighter }) => {
+        highlighter.codeToThemedTokens(toString(node), language).forEach((line, i) => {
+          if (!tokenized[i]) {
+            tokenized[i] = { content: line.map(({ content }) => content).join(""), themes: {} };
+          }
+          let pos = 0;
+          tokenized[i].themes[label] = line.map((token) => {
+            const newToken = { pos, ...token };
+            pos += token.content.length;
+            return newToken;
           });
         });
-        // eslint-disable-next-line no-param-reassign
-        node.properties.dataSyntaxHighlighted = true;
-        // eslint-disable-next-line no-param-reassign, no-shadow
-        node.children[0].children = tokenized.flatMap(({ content, themes }) => {
-          const starts = [
-            ...new Set(Object.entries(themes).flatMap(([, tokens]) => tokens.map(({ pos }) => pos))),
-          ].sort((a, b) => a - b);
-          const children = starts.map((pos, i) => {
-            const styles = [];
-            Object.entries(themes).forEach(([label, tokens]) => {
-              const token = tokens
-                .slice()
-                .reverse()
-                .find((t) => t.pos <= pos);
-              styles.push(`--hl-color-${label}:${token.color}`);
-              // eslint-disable-next-line no-bitwise
-              if (token.fontStyle & 1) {
-                styles.push(`--hl-italic-${label}:italic`);
-              }
-              // eslint-disable-next-line no-bitwise
-              if (token.fontStyle & 2) {
-                styles.push(`--hl-bold-${label}:bold`);
-              }
-              // eslint-disable-next-line no-bitwise
-              if (token.fontStyle & 4) {
-                styles.push(`--hl-underline-${label}:underline`);
-              }
-            });
-            styles.sort();
+      });
+      // eslint-disable-next-line no-param-reassign
+      node.children = tokenized.flatMap((line) => {
+        const allStarts = Object.values(line.themes).flatMap((tokens) => tokens.map(({ pos }) => pos));
+        const starts = [...new Set(allStarts)].sort((a, b) => a - b);
+        return [
+          ...starts.map((pos, i) => {
+            const style = Object.entries(line.themes)
+              .flatMap(([label, tokens]) => {
+                const token = tokens
+                  .slice()
+                  .reverse()
+                  .find((t) => t.pos <= pos);
+                return [
+                  `--hl-color-${label}:${token.color}`,
+                  // eslint-disable-next-line no-bitwise
+                  ...(token.fontStyle & 1 ? [`--hl-italic-${label}:italic`] : []),
+                  // eslint-disable-next-line no-bitwise
+                  ...(token.fontStyle & 2 ? [`--hl-bold-${label}:bold`] : []),
+                  // eslint-disable-next-line no-bitwise
+                  ...(token.fontStyle & 4 ? [`--hl-underline-${label}:underline`] : []),
+                ];
+              })
+              .sort()
+              .join(";");
             return {
               type: "element",
               tagName: "span",
-              properties: { style: styles.join(";") },
-              children: [{ type: "text", value: content.slice(pos, starts[i + 1]) }],
+              properties: { style },
+              children: [{ type: "text", value: line.content.slice(pos, starts[i + 1]) }],
             };
-          });
-          children.push({ type: "text", value: "\n" });
-          return children;
-        });
-        node.children[0].children.pop();
-      }
-    );
+          }),
+          { type: "text", value: "\n" },
+        ];
+      });
+      node.children.pop();
+      // eslint-disable-next-line no-param-reassign
+      node.properties.dataSyntaxHighlighted = true;
+    });
   };
 }
 
@@ -152,14 +135,14 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addNunjucksAsyncShortcode("avatar", async (className) => {
     // eslint-disable-next-line import/extensions
     const { screens } = resolveConfig(await import("./tailwind.config.js")).theme;
-    const sizes = className
-      .split(" ")
-      .filter((cl) => cl.match(/h-/))
-      .map((cl) => {
-        const [a, b] = cl.split(":");
-        const px = `${parseInt((b ?? a).split("-")[1], 10) * 4}px`;
-        return b === undefined ? px : `(min-width: ${screens[a]}) ${px}`;
-      });
+    const sizes = className.split(" ").flatMap((cl) => {
+      if (!cl.match(/h-/)) {
+        return [];
+      }
+      const [a, b] = cl.split(":");
+      const px = `${parseInt((b ?? a).split("-")[1], 10) * 4}px`;
+      return [b === undefined ? px : `(min-width: ${screens[a]}) ${px}`];
+    });
     sizes.reverse();
     return Image.generateHTML(await avatarMetadata, {
       class: `inline rounded-full align-top ${className}`,
@@ -168,7 +151,7 @@ module.exports = (eleventyConfig) => {
     });
   });
 
-  // date formatting filter
+  // date formatting a la tera
   eleventyConfig.addNunjucksFilter("date", (value, formatString) =>
     dayjs(value).format(formatString ?? "YYYY-MM-DDTHH:mm:ssZ")
   );

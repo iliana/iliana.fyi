@@ -35,8 +35,8 @@ export function h() {
       : xmlns
       ? document.createElementNS(xmlns, name)
       : document.createElement(name);
-    Object.entries(data).forEach((datum) => element.setAttribute(...datum));
     children.forEach((child) => element.append(child(xmlns)));
+    Object.entries(data).forEach((datum) => element.setAttribute(...datum));
     return element;
   };
 }

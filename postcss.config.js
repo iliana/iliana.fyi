@@ -1,5 +1,6 @@
 module.exports = {
   plugins: {
+    [`${__dirname}/src/postcss/accent.js`]: {},
     "tailwindcss/nesting": {},
     tailwindcss: {},
     autoprefixer: {},
