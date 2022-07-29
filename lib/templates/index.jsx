@@ -7,6 +7,7 @@ import React from "react";
 import Avatar from "../components/avatar";
 import Document from "../components/document";
 import Prose from "../components/prose";
+import CohostIcon from "./cohost.svg";
 import IcosahedronIcon from "./icosahedron.svg";
 
 export default function Index() {
@@ -24,46 +25,81 @@ export default function Index() {
           iliana etaoin
         </h1>
 
-        <LinkList>
-          <LinkListItem>
+        <ul className="sm:space-x-3 lg:space-x-4 xl:space-x-5 2xl:space-x-6">
+          <li className="sm:inline">
             <a href="https://pronoun.is/xie/xer?or=she">
               xie/xer
               <span className="sr-only"> pronouns</span>
             </a>
-          </LinkListItem>
-          <LinkListItem>
+          </li>
+          <li className="sm:inline">
             <a href="/lowercase/">always lowercase</a>
-          </LinkListItem>
-          <LinkListItem>
+          </li>
+          <li className="sm:inline">
             <a href="/etaoin.flac">pronounced /ɪliˈɑnə ɛˈtiːn/</a>
-          </LinkListItem>
-        </LinkList>
-        <LinkList>
-          <LinkListItem>
-            <IconLink icon={MailIcon} label="Email" href="mailto:iliana@buttslol.net">
-              iliana@buttslol.net
-            </IconLink>
-          </LinkListItem>
-          <LinkListItem>
-            <IconLink icon={IcosahedronIcon} label="Fediverse" href="https://icosahedron.website/@iliana" rel="me">
-              @iliana@icosahedron.website
-            </IconLink>
-          </LinkListItem>
-          <LinkListItem>
-            <IconLink icon={TwitterLogo} fill label="Twitter" href="https://twitter.com/ilianathewitch" rel="me">
-              @ilianathewitch
-            </IconLink>
-          </LinkListItem>
-          <LinkListItem>
-            <IconLink icon={GithubLogo} fill label="GitHub" href="https://github.com/iliana" rel="me">
-              @iliana
-            </IconLink>
-          </LinkListItem>
-        </LinkList>
+          </li>
+        </ul>
 
-        <Prose className="mt-5 lg:mt-6 xl:mt-7 2xl:mt-8 mb-8 lg:mb-9 xl:mb-10 2xl:mb-12">
-          {"{{ section.content | safe }}"}
-        </Prose>
+        <ul className="mb-8 lg:mb-9 xl:mb-10 2xl:mb-12">
+          <li>
+            systems engineer at{" "}
+            <a href="https://oxide.computer">
+              oxide computer<span className="sr-only sm:not-sr-only"> company</span>
+            </a>
+          </li>
+          <li>
+            <IconLink
+              icon={MailIcon}
+              label="Email"
+              prefix="mailto:"
+              user="iliana@buttslol.net"
+              href="mailto:iliana@buttslol.net"
+            />
+          </li>
+          <li>
+            <IconLink
+              icon={CohostIcon}
+              fill
+              label="cohost"
+              prefix="cohost.org/"
+              user="iliana"
+              href="https://cohost.org/iliana"
+              rel="me"
+            />
+          </li>
+          <li>
+            <IconLink
+              icon={GithubLogo}
+              fill
+              label="GitHub"
+              prefix="github.com/"
+              user="iliana"
+              href="https://github.com/iliana"
+              rel="me"
+            />
+          </li>
+          <li>
+            <IconLink
+              icon={IcosahedronIcon}
+              label="Fediverse"
+              prefix="icosahedron.website/"
+              user="@iliana"
+              href="https://icosahedron.website/@iliana"
+              rel="me"
+            />
+          </li>
+          <li>
+            <IconLink
+              icon={TwitterLogo}
+              fill
+              label="Twitter"
+              prefix="twitter.com/"
+              user="ilianathewitch"
+              href="https://twitter.com/ilianathewitch"
+              rel="me"
+            />
+          </li>
+        </ul>
 
         <h2 className="sr-only">Blog</h2>
         <ul>
@@ -96,28 +132,21 @@ export default function Index() {
   );
 }
 
-function LinkList({ children }) {
-  return <ul className="md:space-x-3 lg:space-x-4 xl:space-x-5 2xl:space-x-6">{children}</ul>;
-}
-
-function LinkListItem({ children }) {
-  return <li className="md:inline">{children}</li>;
-}
-
-function IconLink({ icon: Icon, iconClassName, fill, href, rel, label, children }) {
+function IconLink({ icon: Icon, iconClassName, fill, href, rel, label, prefix, user, children }) {
   return (
     <span className="whitespace-nowrap">
       <Icon
         width="1em"
         height="1em"
         fill={fill ? "currentColor" : "none"}
-        className={c("inline mr-1 lg:mr-1.5", iconClassName)}
+        className={c("inline mr-1.5 lg:mr-2", iconClassName)}
         aria-hidden
         focusable="false"
       />
       <a href={href} rel={rel}>
         {label ? <span className="sr-only">{label}: </span> : null}
-        {children}
+        {prefix ? <span className="opacity-70 dark:opacity-80">{prefix}</span> : null}
+        {user ?? children}
       </a>
     </span>
   );
