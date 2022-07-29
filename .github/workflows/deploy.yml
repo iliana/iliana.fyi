@@ -12,6 +12,7 @@ jobs:
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
 
+      - run: brew update
       - run: git -C "$(brew --prefix)/Library/Taps/homebrew/homebrew-core" checkout bb47bb4a1c9dc5cbb300ef1299ba3de47447660a Formula/zola.rb
       - run: brew install zola
 
