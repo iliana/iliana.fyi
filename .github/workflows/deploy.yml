@@ -12,12 +12,11 @@ jobs:
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
 
-      - run: brew update
-      - run: git -C "$(brew --prefix)/Library/Taps/homebrew/homebrew-core" checkout bb47bb4a1c9dc5cbb300ef1299ba3de47447660a Formula/zola.rb
-      - run: brew install zola
-
       - run: npm ci
         env:
           NODE_ENV: production
+      - run: curl -fsSL https://github.com/getzola/zola/releases/download/v0.16.0/zola-v0.16.0-x86_64-unknown-linux-gnu.tar.gz | tar -xC node_modules/.bin
+      - run: echo "068e4448e409bb1f5ee5e925d8667e1d95c639f1a86b780e4e28e2eb10de1c5a  node_modules/.bin/zola" | sha256sum -c
+
       - run: npm run build
       - run: rsync -avc public/ www-deploy@dreamweaver:/srv/iliana.fyi/
