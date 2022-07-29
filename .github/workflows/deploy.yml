@@ -12,6 +12,9 @@ jobs:
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
 
+      - run: pipx install fonttools
+      - run: pipx inject fonttools brotli
+
       - run: npm ci
         env:
           NODE_ENV: production
