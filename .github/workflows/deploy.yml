@@ -25,4 +25,4 @@ jobs:
       - run: echo "068e4448e409bb1f5ee5e925d8667e1d95c639f1a86b780e4e28e2eb10de1c5a  node_modules/.bin/zola" | sha256sum -c
 
       - run: npm run build
-      - run: rsync -avc public/ www-deploy@dreamweaver:/srv/iliana.fyi/
+      - run: rsync --archive --verbose --checksums --omit-dir-times public/ www-deploy@dreamweaver:/srv/iliana.fyi/
