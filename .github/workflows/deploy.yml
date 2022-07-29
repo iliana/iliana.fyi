@@ -11,6 +11,8 @@ jobs:
       - uses: tailscale/github-action@e870a1112fcc1faeeeeea3c1b0ce544e5ad01844
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+
+      - run: mkdir ~/.ssh
       - run: tailscale status --json | jq -r '.Peer[] | . as $peer | select(.sshHostKeys) | .sshHostKeys[] | $peer.HostName + " " + .' > ~/.ssh/known_hosts
 
       - run: pipx install fonttools
