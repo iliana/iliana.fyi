@@ -11,6 +11,7 @@ jobs:
       - uses: tailscale/github-action@e870a1112fcc1faeeeeea3c1b0ce544e5ad01844
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+      - run: tailscale status --json | jq -r '.Peer[] | . as $peer | select(.sshHostKeys) | .sshHostKeys[] | $peer.HostName + " " + .' > ~/.ssh/known_hosts
 
       - run: pipx install fonttools
       - run: pipx inject fonttools brotli
@@ -22,4 +23,4 @@ jobs:
       - run: echo "068e4448e409bb1f5ee5e925d8667e1d95c639f1a86b780e4e28e2eb10de1c5a  node_modules/.bin/zola" | sha256sum -c
 
       - run: npm run build
-      - run: rsync --rsh="tailscale ssh" -avc public/ www-deploy@dreamweaver:/srv/iliana.fyi/
+      - run: rsync -avc public/ www-deploy@dreamweaver:/srv/iliana.fyi/
