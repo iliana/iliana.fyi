@@ -113,7 +113,7 @@ module.exports = {
               [
                 "@svgr/babel-preset",
                 {
-                  jsxRuntimeImport: { source: path.join(__dirname, "lib", "jsx-runtime.js"), specifiers: ["h"] },
+                  jsxRuntimeImport: { source: path.join(__dirname, "lib", "xieact.js"), specifiers: ["h"] },
                   state: { componentName: "SvgComponent" },
                 },
               ],

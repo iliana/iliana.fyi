@@ -14,41 +14,41 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+// This script is run at the end of page load. It creates and wires up the color scheme toggle button.
+
 /* eslint no-unused-vars: ["error", { "varsIgnorePattern": "h" }] */
-/* eslint-disable react/no-unknown-property, react/react-in-jsx-scope */
+/* eslint-disable react/jsx-props-no-spreading, react/no-unknown-property, react/react-in-jsx-scope */
 /* global document, window, CustomEvent */
 
 import MoonIcon from "heroicons/outline/moon.svg";
 import SunIcon from "heroicons/outline/sun.svg";
-import { h } from "../jsx-runtime";
+import { h } from "../xieact";
 
-const sun = <SunIcon height="1em" width="1em" aria-hidden focusable={false} />;
-const moon = <MoonIcon height="1em" width="1em" aria-hidden focusable={false} />;
-const button = (
-  <button type="button" class="float-right text-2xl xl:text-3xl">
-    {sun}
-    {moon}
-  </button>
-);
-
-const ev = "update-color-scheme";
-const isDark = () => document.documentElement.classList.contains("dark");
-const update = (toggle) => {
-  document.dispatchEvent(new CustomEvent(ev, { detail: toggle }));
+const button = (<button type="button" class="float-right text-2xl xl:text-3xl">
+  <SunIcon class="hidden dark:block h-[1em] w-[1em]" focusable={false} />
+  <MoonIcon class="dark:hidden h-[1em] w-[1em]" focusable={false} />
+</button>)();
+const dispatch = (toggle) => {
+  document.dispatchEvent(new CustomEvent("update-color-scheme", { detail: toggle }));
 };
 
-document.addEventListener(ev, () => {
-  (isDark() ? sun : moon).classList.remove("hidden");
-  (isDark() ? moon : sun).classList.add("hidden");
-  button.title = button.ariaLabel = isDark() ? "Light mode" : "Dark mode";
+// update the button title/aria-label when the color scheme changes
+document.addEventListener("update-color-scheme", () => {
+  button.title = button.ariaLabel = document.documentElement.classList.contains("dark") ? "Light mode" : "Dark mode";
 });
-update();
+// ensure this listener runs once
+dispatch();
 
-window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", update);
+// when the color scheme system preference changes, dispatch an event
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", dispatch);
+
+// event handler for explicit user toggle
 button.addEventListener("click", () => {
-  update(true);
+  dispatch(true);
+
+  // try to set the user's explicit preference in local storage
   try {
-    window.localStorage.color = isDark() ? "dark" : "light";
+    window.localStorage.color = document.documentElement.classList.contains("dark") ? "dark" : "light";
   } catch (e) {
     // nothing
   }

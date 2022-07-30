@@ -19,7 +19,7 @@ export default function Document({ children }) {
         <link rel="stylesheet" href="/styles.css" />
         <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
         {/* eslint-disable-next-line react/no-danger */}
-        <script dangerouslySetInnerHTML={{ __html: `!${early}();` }} />
+        <script dangerouslySetInnerHTML={{ __html: `!${early}()` }} />
       </head>
       <body
         className={c(
