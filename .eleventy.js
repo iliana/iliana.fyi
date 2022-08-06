@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const Image = require("@11ty/eleventy-img");
+const dayjs = require("dayjs");
 const htmlmin = require("html-minifier");
 const { optimize } = require("svgo");
 const resolveConfig = require("tailwindcss/resolveConfig");
@@ -61,6 +62,9 @@ module.exports = (eleventyConfig) => {
       sizes: sizes.join(", "),
     });
   });
+
+  // date formatting filter, similar to tera
+  eleventyConfig.addNunjucksFilter("date", (value, formatString) => dayjs(value).format(formatString ?? "YYYY-MM-DD"));
 
   // SVG icon loader, with svgo. this should be async but you can't use async shortcodes in macros
   eleventyConfig.addNunjucksShortcode("svg", (svgPath, fillCurrent, className) => {

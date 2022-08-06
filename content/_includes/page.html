@@ -10,9 +10,12 @@ layout: site
 
 <main>
   {% if page.url.startsWith("/blog") or page.url.startsWith("/links") %}
-  <time datetime="{{ page.date }}" class="my-1.5 block text-sm lg:text-base xl:my-2 xl:text-lg 2xl:my-2.5 2xl:text-xl"
-    >{{ page.date }}</time
+  <time
+    datetime="{{ page.date | date }}"
+    class="my-1.5 block text-sm lg:text-base xl:my-2 xl:text-lg 2xl:my-2.5 2xl:text-xl"
   >
+    {{ page.date | date("MMMM D, YYYY") }}
+  </time>
   {% endif %}
 
   <div class="prose my-5 lg:my-6 xl:my-7 2xl:my-8">

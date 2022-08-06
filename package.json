@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "NODE_ENV=production webpack && NODE_ENV=production eleventy --passthroughall",
+    "build": "NODE_ENV=production webpack && eleventy --passthroughall",
     "dev": "concurrently --kill-others \"eleventy --passthroughall --serve\" \"webpack --watch\"",
     "fix": "prettier -w . && eslint --ext .js,.jsx --fix ."
   },
@@ -15,6 +15,7 @@
     "babel-loader": "^8.2.4",
     "css-loader": "^6.7.1",
     "cssnano": "^5.1.7",
+    "dayjs": "^1.11.4",
     "fast-glob": "^3.2.11",
     "heroicons": "^1.0.6",
     "html-minifier": "^4.0.0",
