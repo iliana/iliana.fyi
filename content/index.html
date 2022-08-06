@@ -1,10 +1,9 @@
 ---
+# vim: set ft=htmldjango:
 layout: site
 eleventyExcludeFromCollections: true
 ---
 
-<!-- prettier-ignore -->
-{# vim: set ft=htmldjango: #}
 {% macro iconlink(svg, fill, class, href, rel, label, prefix, user) %}
 <span class="whitespace-nowrap">
   {% svg svg, fill, class -%}
@@ -67,7 +66,7 @@ eleventyExcludeFromCollections: true
     {% for post in collections.all | reverse %}
     <li class="my-3.5 text-sm lg:my-4 lg:text-base xl:my-5 xl:text-lg 2xl:my-6 2xl:text-xl">
       <p class="leading-relaxed text-gray-600 dark:text-gray-400">
-        <time datetime="{{ post.date | date }}">{{ post.date | date("MMMM D, YYYY") }}</time>
+        <time datetime="{{ post.date | date('YYYY-MM-DD') }}">{{ post.date | date("MMMM D, YYYY") }}</time>
         {%- if post.data.where %} &mdash; {{ post.data.where }}{% endif -%}
         <span class="sr-only">: </span>
       </p>

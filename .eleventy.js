@@ -31,6 +31,9 @@ module.exports = (eleventyConfig) => {
     compile: (input) => async () => this.pipeline.process(input),
   });
 
+  // used in atom.njk
+  eleventyConfig.addNunjucksFilter("absolute", (url) => new URL(url, "https://iliana.fyi").toString());
+
   // generate avatar thumbnails and a shortcode for the <picture> tag
   const avatarMetadata = Image(path.join(__dirname, "static", "iliana.png"), {
     widths: [48, 64, 96],
@@ -64,7 +67,9 @@ module.exports = (eleventyConfig) => {
   });
 
   // date formatting filter, similar to tera
-  eleventyConfig.addNunjucksFilter("date", (value, formatString) => dayjs(value).format(formatString ?? "YYYY-MM-DD"));
+  eleventyConfig.addNunjucksFilter("date", (value, formatString) =>
+    dayjs(value).format(formatString ?? "YYYY-MM-DDTHH:mm:ssZ")
+  );
 
   // SVG icon loader, with svgo. this should be async but you can't use async shortcodes in macros
   eleventyConfig.addNunjucksShortcode("svg", (svgPath, fillCurrent, className) => {

@@ -1,8 +1,7 @@
 ---
+# vim: set ft=htmldjango:
 layout: site
 ---
-
-{# vim: set ft=htmldjango: #}
 
 <a href="/" class="text-lg font-semibold lg:text-xl xl:text-2xl 2xl:text-3xl">
   {% avatar "mr-2 h-7 w-7 xl:mr-2.5 xl:h-8 xl:w-8 2xl:mr-3 2xl:h-9 2xl:w-9" %}iliana etaoin
@@ -11,7 +10,7 @@ layout: site
 <main>
   {% if page.url.startsWith("/blog") or page.url.startsWith("/links") %}
   <time
-    datetime="{{ page.date | date }}"
+    datetime="{{ page.date | date('YYYY-MM-DD') }}"
     class="my-1.5 block text-sm lg:text-base xl:my-2 xl:text-lg 2xl:my-2.5 2xl:text-xl"
   >
     {{ page.date | date("MMMM D, YYYY") }}

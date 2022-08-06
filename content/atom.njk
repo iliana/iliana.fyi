@@ -1,0 +1,29 @@
+---
+# vim: set ft=xml:
+permalink: atom.xml
+layout: null
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en" xml:base="https://iliana.fyi">
+  <title>iliana.fyi</title>
+  <subtitle>iliana’s blog</subtitle>
+  <link href="{{ permalink | absolute }}" rel="self" type="application/atom+xml" />
+  <link href="{{ "/" | absolute }}" />
+  <updated>{{ collections.all.at(-1).date | date }}</updated>
+  <id>{{ permalink | absolute }}</id>
+  {% for post in collections.all | reverse %}
+  <entry>
+    <title>{{ post.data.title | striptags }}</title>
+    <published>{{ post.date | date }}</published>
+    <updated>{{ post.data.updated | default(post.date) | date }}</updated>
+    <link href="{{ post.data.link | default(post.url) | absolute }}" rel="alternate" type="text/html" />
+    <id>{{ post.url | absolute }}</id>
+    {% if post.data.where %}
+    <summary type="html">{{ post.templateContent }}</summary>
+    {% else %}
+    <content type="html">{{ post.templateContent }}</content>
+    {% endif %}
+  </entry>
+  {% endfor %}
+</feed>
