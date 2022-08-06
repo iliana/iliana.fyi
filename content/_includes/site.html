@@ -1,0 +1,21 @@
+{# vim: set ft=htmldjango: #}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{% if page.title %}{{ page.title | striptags }} &mdash; {% endif %}iliana.fyi</title>
+    <link rel="preload" href="/dist/roman.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="icon" href="/netscape.gif" />
+    <link rel="stylesheet" href="/dist/styles.css" />
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
+    <script src="/dist/early.js"></script>
+  </head>
+  <body
+    class="bg-white p-4 text-base leading-relaxed text-gray-700 dark:bg-black dark:text-gray-300 lg:p-6 lg:text-lg lg:leading-relaxed xl:p-7 xl:text-xl xl:leading-relaxed 2xl:p-8 2xl:text-2xl 2xl:leading-relaxed"
+  >
+    <div class="2xl:container 2xl:mx-auto">{{ content | safe }}</div>
+    <script defer src="/dist/defer.js"></script>
+    <script defer data-domain="iliana.fyi" src="https://plausible.io/js/script.js"></script>
+  </body>
+</html>

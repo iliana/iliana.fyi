@@ -1,7 +1,7 @@
-+++
-title = "the <span class=\"font-feature-case\">[E]</span>nd of eeeee"
-date = 2018-12-11T12:00:00-08:00
-+++
+---
+title: 'the <span class="font-feature-case">[E]</span>nd of eeeee'
+date: 2018-12-11T12:00:00-08:00
+---
 
 _(This is a follow-up to "[A tale of 132 e's](/blog/e98e/)". Post updated to reflect permanent archive location.)_
 

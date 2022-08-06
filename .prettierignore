@@ -1,6 +1,1 @@
-/lib/css/code-dark.css
-/lib/css/code-light.css
-/node_modules
-/public
-/static
-/templates/*.html
+.gitignore

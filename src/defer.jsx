@@ -16,17 +16,16 @@
 
 // This script is run at the end of page load. It creates and wires up the color scheme toggle button.
 
-/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "h" }] */
-/* eslint-disable react/jsx-props-no-spreading, react/no-unknown-property, react/react-in-jsx-scope */
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "(MoonIcon|SunIcon|h)" }] */
 /* global document, window, CustomEvent */
 
 import MoonIcon from "heroicons/outline/moon.svg";
 import SunIcon from "heroicons/outline/sun.svg";
-import { h } from "../xieact";
+import { h } from "./xieact";
 
 const button = (<button type="button" class="float-right text-2xl xl:text-3xl">
-  <SunIcon class="hidden dark:block h-[1em] w-[1em]" focusable={false} />
-  <MoonIcon class="dark:hidden h-[1em] w-[1em]" focusable={false} />
+  <SunIcon class="hidden h-[1em] w-[1em] dark:block" focusable={false} />
+  <MoonIcon class="h-[1em] w-[1em] dark:hidden" focusable={false} />
 </button>)();
 const dispatch = (toggle) => {
   document.dispatchEvent(new CustomEvent("update-color-scheme", { detail: toggle }));
@@ -34,6 +33,7 @@ const dispatch = (toggle) => {
 
 // update the button title/aria-label when the color scheme changes
 document.addEventListener("update-color-scheme", () => {
+  // eslint-disable-next-line no-multi-assign
   button.title = button.ariaLabel = document.documentElement.classList.contains("dark") ? "Light mode" : "Dark mode";
 });
 // ensure this listener runs once

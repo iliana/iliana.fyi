@@ -1,0 +1,93 @@
+---
+layout: site
+eleventyExcludeFromCollections: true
+---
+
+<!-- prettier-ignore -->
+{# vim: set ft=htmldjango: #}
+{% macro iconlink(svg, fill, class, href, rel, label, prefix, user) %}
+<span class="whitespace-nowrap">
+  {% svg svg, fill, class -%}
+  <a href="{{ href }}" {% if rel %} rel="{{ rel }}" {% endif %}>
+    {% if label %}<span class="sr-only">{{ label }}: </span>{% endif %}
+    <!-- prettier-ignore -->
+    {% if prefix %}<span class="opacity-70 dark:opacity-80">{{ prefix }}</span>{% endif %}
+    <!-- prettier-ignore -->
+    {{ user }}
+  </a>
+</span>
+{% endmacro %}
+
+<main>
+  <h1
+    class="mb-1 text-2xl font-semibold text-gray-900 dark:text-gray-100 lg:mb-1.5 lg:text-3xl xl:mb-2 xl:text-4xl 2xl:mb-2.5 2xl:text-5xl"
+  >
+    <a href="/iliana.png"
+      >{% avatar "mr-2.5 h-8 w-8 lg:mr-3 lg:h-9 lg:w-9 xl:mr-3.5 xl:h-10 xl:w-10 2xl:mr-4 2xl:h-12 2xl:w-12" %}</a
+    >iliana etaoin
+  </h1>
+
+  <ul class="sm:space-x-3 lg:space-x-4 xl:space-x-5 2xl:space-x-6">
+    <li class="sm:inline">
+      <a href="https://pronoun.is/xie/xer?or=she">xie/xer<span class="sr-only"> pronouns</span></a>
+    </li>
+    <li class="sm:inline"><a href="/lowercase/">always lowercase</a></li>
+    <li class="sm:inline"><a href="/etaoin.flac">pronounced /ɪliˈɑnə ɛˈtiːn/</a></li>
+  </ul>
+
+  <ul class="mb-8 lg:mb-9 xl:mb-10 2xl:mb-12">
+    <li>
+      systems engineer at
+      <a href="https://oxide.computer">oxide computer<span class="sr-only sm:not-sr-only"> company</span></a>
+    </li>
+    <li>
+      {{ iconlink(svg="heroicons/outline/mail.svg", href="mailto:iliana@buttslol.net", label="Email", prefix="mailto:",
+      user="iliana@buttslol.net") }}
+    </li>
+    <li>
+      {{ iconlink(svg="cohost.svg", fill=true, href="https://cohost.org/iliana", rel="me", label="cohost",
+      prefix="cohost.org/", user="iliana") }}
+    </li>
+    <li>
+      {{ iconlink(svg="ionicons/dist/svg/logo-github.svg", fill=true, href="https://github.com/iliana", rel="me",
+      label="GitHub", prefix="github.com/", user="iliana") }}
+    </li>
+    <li>
+      {{ iconlink(svg="icosahedron.svg", href="https://icosahedron.website/@iliana", rel="me", label="Fediverse",
+      prefix="icosahedron.website/", user="@iliana") }}
+    </li>
+    <li>
+      {{ iconlink(svg="ionicons/dist/svg/logo-twitter.svg", fill=true, href="https://twitter.com/ilianathewitch",
+      rel="me", label="Twitter", prefix="twitter.com/", user="ilianathewitch") }}
+    </li>
+  </ul>
+
+  <h2 class="sr-only">Blog</h2>
+  <ul>
+    {% for post in collections.all | reverse %}
+    <li class="my-3.5 text-sm lg:my-4 lg:text-base xl:my-5 xl:text-lg 2xl:my-6 2xl:text-xl">
+      <p class="leading-relaxed text-gray-600 dark:text-gray-400">
+        <time datetime="{{ post.date }}">{{ post.date }}</time>
+        {%- if post.data.where %} &mdash; {{ post.data.where }}{% endif -%}
+        <span class="sr-only">: </span>
+      </p>
+      <!-- prettier-ignore -->
+      {% if post.data.where %}
+      {% prose %}
+      {{ post.templateContent | safe }}
+      {% endprose %}
+      {% else %}
+      {% prose "prose-a:font-extrabold" %}
+      <a href="{{ post.url }}">{{ post.data.title | safe }}</a>
+      <!-- prettier-ignore -->
+      {% endprose %}
+    {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+
+  <p class="text-sm lg:text-base xl:text-lg 2xl:text-xl">
+    {{ iconlink(svg="heroicons/outline/rss.svg", class="text-orange-600 dark:text-orange-400", href="/atom.xml",
+    user="Atom feed") }}
+  </p>
+</main>

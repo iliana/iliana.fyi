@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Inter var";
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+    font-feature-settings: "calt" off, "cv05" on, "cv08" on, "ss03" on;
+    src: url("inter-ui/Inter (web)/Inter-roman.var.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Inter var";
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+    font-feature-settings: "calt" off, "cv05" on, "cv08" on, "ss03" on;
+    src: url("inter-ui/Inter (web)/Inter-italic.var.woff2") format("woff2");
+  }
+
+  * {
+    --font-feature-case: "case" off;
+    font-feature-settings: var(--font-feature-case);
+  }
+
+  .anchor {
+    @apply font-medium text-purple-600 underline dark:text-purple-400;
+  }
+
+  a {
+    @apply anchor;
+  }
+
+  .prose pre {
+    @apply border border-purple-500/25 bg-purple-500/5 dark:border-purple-500/30 dark:bg-purple-500/10;
+  }
+
+  .prose pre[data-theme="light"] {
+    @apply block dark:hidden;
+  }
+
+  .prose code[data-theme="light"] {
+    @apply inline dark:hidden;
+  }
+
+  .prose pre[data-theme="dark"] {
+    @apply hidden dark:block;
+  }
+
+  .prose code[data-theme="dark"] {
+    @apply hidden dark:inline;
+  }
+
+  .prose kbd.key {
+    @apply rounded border border-gray-400 bg-gray-200 px-1 py-0.5 font-sans text-sm dark:border-gray-600 dark:bg-gray-800 lg:px-1.5 lg:text-base xl:text-lg 2xl:text-xl;
+  }
+}
+
+@layer components {
+  a[data-footnote-ref] {
+    @apply no-underline;
+  }
+
+  section[data-footnotes] ol {
+    @apply list-none p-0;
+    counter-reset: item;
+  }
+
+  section[data-footnotes] li {
+    @apply relative p-0;
+    counter-increment: item;
+  }
+
+  section[data-footnotes] p {
+    @apply pl-3.5 text-sm lg:pl-4 lg:text-base xl:pl-5 xl:text-lg 2xl:pl-6 2xl:text-xl;
+  }
+
+  a[data-footnote-backref]:before {
+    @apply absolute top-[-.1em] left-0 text-[75%];
+    content: counter(item);
+  }
+}
+
+@layer utilities {
+  .font-feature-case {
+    --font-feature-case: "case" on;
+  }
+}

@@ -1,7 +1,7 @@
-+++
-title = "Installing Fedora 31 on a 2018 Mac mini"
-date = 2020-01-12T12:00:00-08:00
-+++
+---
+title: "Installing Fedora 31 on a 2018 Mac mini"
+date: 2020-01-12T12:00:00-08:00
+---
 
 Within the last couple of years I decided to ditch my 2U rackmount desktop (named `g2-2xlarge`, complete with a GPU on a PCIe riser card) in favor of taking up less space in my house with computers.
 

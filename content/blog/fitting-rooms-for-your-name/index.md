@@ -1,7 +1,7 @@
-+++
-title = "Fitting rooms, but for your name"
-date = 2019-08-15T12:00:00-07:00
-+++
+---
+title: "Fitting rooms, but for your name"
+date: 2019-08-15T12:00:00-07:00
+---
 
 At Amazon, the company directory ("Phone Tool") allows you to set your name to pretty much anything you please. I remember getting the company-wide email sent announcing this ability. A few of my coworkers wondered why anybody would need such a feature. For me, I read that email and realized that functionality was for people like me.
 

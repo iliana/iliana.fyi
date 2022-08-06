@@ -25,7 +25,7 @@ const fg = require("fast-glob");
 
 async function subset(content) {
   const chars = new Set(`${String.fromCharCode(...Array(0x80).keys())}\u00a0–—‘’“”`);
-  const files = fg.stream(["content/**/*.md", "lib/**/*.{css,js,jsx}"], { cwd: path.join(__dirname, "..") });
+  const files = fg.stream(["content/**/*.md", "src/**/*.{css,js,jsx}"], { cwd: path.join(__dirname, "..") });
   for await (const file of files) {
     const data = await fs.readFile(path.join(__dirname, "..", file), { encoding: "utf8" });
     [...data].forEach((c) => chars.add(c));
