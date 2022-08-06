@@ -15,10 +15,8 @@ layout: site
   >
   {% endif %}
 
-  <!-- prettier-ignore -->
-  {% prose "my-5 lg:my-6 xl:my-7 2xl:my-8" %}
-  <h1>{{ title | safe }}</h1>
-  {{ content | safe }}
-  <!-- prettier-ignore -->
-  {% endprose %}
+  <div class="prose my-5 lg:my-6 xl:my-7 2xl:my-8">
+    <h1>{{ title | safe }}</h1>
+    {{ content | safe }}
+  </div>
 </main>

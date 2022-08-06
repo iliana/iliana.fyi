@@ -4,19 +4,6 @@ const Image = require("@11ty/eleventy-img");
 const htmlmin = require("html-minifier");
 const { optimize } = require("svgo");
 const resolveConfig = require("tailwindcss/resolveConfig");
-const tailwindConfig = require("./tailwind.config");
-
-const avatarMetadata = Image(path.join(__dirname, "static", "iliana.png"), {
-  widths: [48, 64, 96],
-  formats: ["webp", "png"],
-  urlPath: "/dist/",
-  outputDir: path.join(__dirname, "dist"),
-  sharpWebpOptions: {
-    effort: 6,
-    lossless: true,
-    quality: 100,
-  },
-});
 
 module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy({ dist: "dist" });
@@ -43,9 +30,22 @@ module.exports = (eleventyConfig) => {
     compile: (input) => async () => this.pipeline.process(input),
   });
 
+  // generate avatar thumbnails and a shortcode for the <picture> tag
+  const avatarMetadata = Image(path.join(__dirname, "static", "iliana.png"), {
+    widths: [48, 64, 96],
+    formats: ["webp", "png"],
+    urlPath: "/dist/",
+    outputDir: path.join(__dirname, "dist"),
+    sharpWebpOptions: {
+      effort: 6,
+      lossless: true,
+      quality: 100,
+    },
+  });
   eleventyConfig.on("eleventy.before", async () => avatarMetadata);
   eleventyConfig.addNunjucksAsyncShortcode("avatar", async (className) => {
-    const { screens } = resolveConfig(tailwindConfig).theme;
+    // eslint-disable-next-line import/extensions
+    const { screens } = resolveConfig(await import("./tailwind.config.js")).theme;
     const sizes = className
       .split(" ")
       .filter((cl) => cl.match(/h-/))
@@ -55,7 +55,6 @@ module.exports = (eleventyConfig) => {
         return b === undefined ? px : `(min-width: ${screens[a]}) ${px}`;
       });
     sizes.reverse();
-
     return Image.generateHTML(await avatarMetadata, {
       class: `inline rounded-full align-top ${className}`,
       alt: "",
@@ -63,27 +62,17 @@ module.exports = (eleventyConfig) => {
     });
   });
 
-  eleventyConfig.addPairedNunjucksShortcode(
-    "prose",
-    (content, className) =>
-      `<div class="prose-a:anchor prose dark:prose-invert lg:prose-lg xl:prose-xl 2xl:prose-2xl ${className}">${content}</div>`
-  );
-
+  // SVG icon loader, with svgo. this should be async but you can't use async shortcodes in macros
   eleventyConfig.addNunjucksShortcode("svg", (svgPath, fillCurrent, className) => {
     const realPath = svgPath.includes("/")
       ? path.join(__dirname, "node_modules", svgPath)
       : path.join(__dirname, "content", "_includes", svgPath);
-
     return optimize(fs.readFileSync(realPath, "utf8"), {
       plugins: [
-        {
-          name: "preset-default",
-        },
+        { name: "preset-default" },
         {
           name: "removeAttrs",
-          params: {
-            attrs: "class",
-          },
+          params: { attrs: "class" },
         },
         {
           name: "addAttributesToSVGElement",
@@ -99,6 +88,7 @@ module.exports = (eleventyConfig) => {
     }).data;
   });
 
+  // minify output HTML
   eleventyConfig.addTransform("htmlmin", (content, outputPath) =>
     outputPath && outputPath.endsWith(".html")
       ? htmlmin.minify(content, {
