@@ -74,7 +74,7 @@ function rehypeMultiShikiDrifting({ themes }) {
         node.children[0].children = tokenized.flatMap(({ content, themes }) => {
           const starts = [
             ...new Set(Object.entries(themes).flatMap(([, tokens]) => tokens.map(({ pos }) => pos))),
-          ].sort();
+          ].sort((a, b) => a - b);
           const children = starts.map((pos, i) => {
             const styles = [];
             Object.entries(themes).forEach(([label, tokens]) => {
