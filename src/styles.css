@@ -24,6 +24,13 @@
   * {
     --font-feature-case: "case" off;
     font-feature-settings: var(--font-feature-case);
+
+    --hl-italic-light: normal;
+    --hl-bold-light: normal;
+    --hl-underline-light: none;
+    --hl-italic-dark: normal;
+    --hl-bold-dark: normal;
+    --hl-underline-dark: none;
   }
 
   .anchor {
@@ -40,23 +47,23 @@
     @apply prose-a:anchor dark:prose-invert lg:prose-lg xl:prose-xl 2xl:prose-2xl;
 
     pre {
-      @apply border border-purple-500/25 bg-purple-500/5 dark:border-purple-500/30 dark:bg-purple-500/10;
+      @apply rounded-md border border-purple-300/50 bg-purple-200/20 dark:border-purple-700/50 dark:bg-purple-800/20 xl:rounded-lg;
     }
 
-    pre[data-theme="light"] {
-      @apply block dark:hidden;
+    pre[data-syntax-highlighted] span {
+      color: var(--hl-color-light);
+      font-style: var(--hl-italic-light);
+      font-weight: var(--hl-bold-light);
+      text-decoration: var(--hl-underline-light);
     }
 
-    code[data-theme="light"] {
-      @apply inline dark:hidden;
-    }
-
-    pre[data-theme="dark"] {
-      @apply hidden dark:block;
-    }
-
-    code[data-theme="dark"] {
-      @apply hidden dark:inline;
+    @media (prefers-color-scheme: dark) {
+      pre[data-syntax-highlighted] span {
+        color: var(--hl-color-dark);
+        font-style: var(--hl-italic-dark);
+        font-weight: var(--hl-bold-dark);
+        text-decoration: var(--hl-underline-dark);
+      }
     }
 
     kbd.key {
