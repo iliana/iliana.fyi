@@ -202,17 +202,20 @@ module.exports = (eleventyConfig) => {
   // minify output HTML
   eleventyConfig.addTransform("htmlmin", (content, outputPath) =>
     outputPath && outputPath.endsWith(".html")
-      ? htmlmin.minify(content, {
-          collapseBooleanAttributes: true,
-          collapseWhitespace: true,
-          decodeEntities: true,
-          removeAttributeQuotes: true,
-          removeComments: true,
-          removeOptionalTags: true,
-          sortAttributes: true,
-          sortClassName: true,
-          useShortDoctype: true,
-        })
+      ? htmlmin
+          .minify(content, {
+            collapseBooleanAttributes: true,
+            collapseWhitespace: true,
+            decodeEntities: true,
+            removeAttributeQuotes: true,
+            removeComments: true,
+            removeOptionalTags: true,
+            sortAttributes: true,
+            sortClassName: true,
+            useShortDoctype: true,
+          })
+          // fix footnote backref emojification
+          .replace(/\u21a9/g, "\u21a9\ufe0e")
       : content
   );
 
