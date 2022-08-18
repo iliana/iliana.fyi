@@ -21,47 +21,38 @@ import MoonIcon from "heroicons/outline/moon.svg";
 import SunIcon from "heroicons/outline/sun.svg";
 import { h } from "./xieact";
 
-const button = (<button type="button" class="float-right text-2xl xl:text-3xl">
-  <SunIcon focusable={false} class="hidden h-[1em] w-[1em] dark:block" />
-  <MoonIcon focusable={false} class="h-[1em] w-[1em] dark:hidden" />
-</button>)();
+try {
+  document.documentElement.dataset.theme = window.localStorage.color;
+} catch {
+  // nothing
+}
 
-const changeTitle = (isDark) => {
+const button = (
+  <button type="button" class="float-right text-2xl xl:text-3xl">
+    <SunIcon focusable={false} class="hidden h-[1em] w-[1em] dark:block" />
+    <MoonIcon focusable={false} class="h-[1em] w-[1em] dark:hidden" />
+  </button>
+);
+
+const isDark = () =>
+  document.documentElement.dataset.theme === "dark" ||
+  (document.documentElement.dataset.theme !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+const changeTitle = () => {
   // eslint-disable-next-line no-multi-assign
-  button.title = button.ariaLabel = isDark ? "Use light mode" : "Use dark mode";
-  return isDark;
+  button.title = button.ariaLabel = isDark() ? "Use light mode" : "Use dark mode";
 };
-
-const handler = () => {
-  let localScheme;
-  try {
-    localScheme = window.localStorage.color;
-  } catch {
-    // nothing
-  }
-
-  if (
-    changeTitle(
-      localScheme === "dark" || (localScheme !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches)
-    )
-  ) {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
-};
-
-handler();
-document.documentElement.classList.remove("no-js");
+changeTitle();
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", changeTitle);
 
 button.addEventListener("click", () => {
+  document.documentElement.dataset.theme = isDark() ? "light" : "dark";
+  changeTitle();
   try {
-    window.localStorage.color = changeTitle(document.documentElement.classList.toggle("dark")) ? "dark" : "light";
+    window.localStorage.color = document.documentElement.dataset.theme;
   } catch {
     // nothing
   }
 });
-window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", handler);
 
-// we can get away with `firstChild` instead of `firstElementChild` because we minify html
-document.body.firstChild.prepend(button);
+document.body.firstElementChild.prepend(button);

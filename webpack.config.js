@@ -70,11 +70,11 @@ module.exports = {
           options: {
             presets: [
               "@babel/preset-env",
-              ["@babel/preset-react", { pragma: "h" }],
+              ["@babel/preset-react", { runtime: "classic", pragma: "svg" }],
               [
                 "@svgr/babel-preset",
                 {
-                  jsxRuntimeImport: { source: path.join(__dirname, "src", "xieact.js"), specifiers: ["h"] },
+                  jsxRuntimeImport: { source: path.join(__dirname, "src", "xieact.js"), specifiers: ["svg"] },
                   state: { componentName: "SvgComponent" },
                 },
               ],

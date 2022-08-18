@@ -4,7 +4,10 @@ module.exports = {
     "tailwindcss/nesting": {},
     tailwindcss: {},
     autoprefixer: {},
-    [`${__dirname}/src/postcss/dark-mangle.js`]: {},
+    "postcss-dark-theme-class": {
+      darkSelector: '[data-theme="dark"]',
+      lightSelector: '[data-theme="light"]',
+    },
     ...(process.env.NODE_ENV === "production" ? { cssnano: {} } : {}),
   },
 };
