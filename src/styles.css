@@ -56,6 +56,11 @@
       }
     }
 
+    /* since we're overriding the background color, we need to override the default code block color */
+    pre code {
+      @apply text-gray-800 dark:text-gray-200;
+    }
+
     /* round accented blocks that are custom elements and need spacing defined */
     callout,
     tangent {
