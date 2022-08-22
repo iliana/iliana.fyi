@@ -46,8 +46,50 @@
     @apply dark:prose-invert lg:prose-lg xl:prose-xl 2xl:prose-2xl;
 
     /* round accented blocks */
-    pre {
+    pre,
+    tangent {
       @apply border border-accent-300/50 bg-accent-200/20 dark:border-accent-700/50 dark:bg-accent-800/20;
+    }
+
+    /* round accented blocks that are custom elements and need spacing defined */
+    tangent {
+      @apply my-6 block rounded-md px-4 py-3 lg:my-8 lg:px-6 lg:py-4 xl:my-9 xl:rounded-lg xl:py-5 2xl:my-10 2xl:px-8 2xl:py-6;
+
+      > {
+        @apply first:mt-0 last:mb-0;
+      }
+    }
+
+    tangent {
+      @accent pink;
+      @apply relative mt-10 border-dashed lg:mt-12 xl:mt-14;
+
+      &:before {
+        content: "the tangent zone";
+
+        /* -10/11 em, based on font metrics (inter's UPM is 256*11) */
+        margin-top: calc(-10em / 11);
+        /* shift half a pixel down so the baseline is on the bottom edge of the border */
+        top: 0.5px;
+
+        @apply absolute left-4 text-xs italic leading-none text-accent-600 dark:text-accent-400 lg:left-6 lg:text-sm lg:leading-none xl:text-base xl:leading-none 2xl:left-8 2xl:text-lg 2xl:leading-none;
+      }
+
+      > tangent {
+        @apply bg-accent-200/10 dark:bg-accent-800/10;
+      }
+
+      > tangent:before {
+        content: "the cotangent zone";
+      }
+
+      > tangent > tangent:before {
+        content: "the \201cwhat was i talking about again\201d\0020zone";
+      }
+
+      > tangent > tangent > tangent:before {
+        content: "<!-- FIXME(iliana): refactor blog post -->";
+      }
     }
 
     code[data-syntax-highlighted] span {
@@ -69,6 +111,7 @@
     }
   }
 
+  .prose tangent,
   section[data-footnotes] {
     @apply prose-sm lg:prose-base xl:prose-lg 2xl:prose-xl;
   }
