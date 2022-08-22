@@ -47,11 +47,17 @@
 
     /* round accented blocks */
     pre,
+    callout,
     tangent {
       @apply border border-accent-300/50 bg-accent-200/20 dark:border-accent-700/50 dark:bg-accent-800/20;
+
+      & + section[data-footnotes] {
+        @apply border-t-0;
+      }
     }
 
     /* round accented blocks that are custom elements and need spacing defined */
+    callout,
     tangent {
       @apply my-6 block rounded-md px-4 py-3 lg:my-8 lg:px-6 lg:py-4 xl:my-9 xl:rounded-lg xl:py-5 2xl:my-10 2xl:px-8 2xl:py-6;
 
@@ -111,13 +117,14 @@
     }
   }
 
+  .prose callout,
   .prose tangent,
   section[data-footnotes] {
     @apply prose-sm lg:prose-base xl:prose-lg 2xl:prose-xl;
   }
 
   section[data-footnotes] {
-    @apply border-t border-gray-400 dark:border-gray-600;
+    @apply border-t border-accent-300/50 dark:border-accent-700/50;
 
     ol {
       @apply list-none p-0;
