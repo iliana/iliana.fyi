@@ -13,7 +13,7 @@ The [unlicensed code in question](https://github.com/seletskiy/godiff)[^original
 
 We'll discuss some background information, look at where various systems succeeded and failed, and finally ask whether any of this matters.
 
-<tangent>
+<ili-tangent>
 
 This parser appears to be unique (among the Go ecosystem) in that it can parse inline comments, like this:
 
@@ -58,7 +58,7 @@ Can you explain why this is necessary in your commit message?
 
 But that's designed<sup>[_citation needed_]</sup> for humans to parse, not computers, so I get why you might want to use this.
 
-</tangent>
+</ili-tangent>
 
 ## Why do we care about licensing?
 
@@ -66,17 +66,17 @@ In [most countries](https://en.wikipedia.org/wiki/Berne_Convention), works are a
 
 After making the logical leap necessary to apply those minimum standards to the software world, we can understand that software, by default, probably cannot be used, modified, or redistributed without a _license_ from the copyright holder. There is significant case law on the copyrightability of software that we are _not_ going to read, and there are a lot of open questions that we are _not_ going to try to answer, but most of the important open questions have been solved: if you want to use someone's software, you need a license, and if you want others to be able to use your software without asking permission, you need to grant a license.
 
-<tangent>
+<ili-tangent>
 
 If you push code to a public GitHub repository, [you grant an implicit, limited license described in the Terms of Service](https://docs.github.com/en/site-policy/github-terms/github-terms-of-service#3-ownership-of-content-right-to-post-and-license-grants), which allows GitHub to distribute your code and for other users to do a limited set of actions with it. This license is very limited, and does not grant the usual things lawyers want to see when asked about usage and redistribution of software.
 
-<tangent>
+<ili-tangent>
 
 Although maybe that limited license is [not as limited as we thought](https://lwn.net/Articles/862769/).
 
-</tangent>
+</ili-tangent>
 
-</tangent>
+</ili-tangent>
 
 The usual expectation is that you are publishing a copy of your software so that others can use it, but this is not necessarily true; licenses make that explicit. Some licenses, such as [the MIT License](https://en.wikipedia.org/wiki/MIT_License), permit damn near everything as long as you include a notice from the copyright holder; some require more significant responsibility, such as [the AGPL](https://en.wikipedia.org/wiki/Affero_General_Public_License), which requires that you provide a copy of the software to anyone who can access it over a network[^agpl]; some are [purposefully restrictive](https://anticapitalist.software/), or [desperately trying to keep megacorporations from destroying their business](https://en.wikipedia.org/wiki/Server_Side_Public_License), or [are jokes purporting to be a legal document](https://github.com/supertunaman/cdl/blob/master/COPYING).
 
@@ -84,7 +84,7 @@ The usual expectation is that you are publishing a copy of your software so that
 
 The short version: you can't really use software without someone giving you permission, and there are lots of widely-accepted ways to give people permission to use your software.
 
-<tangent>
+<ili-tangent>
 
 I must also bring up [boringcactus's Anti-License Manifesto](https://www.boringcactus.com/2021/09/29/anti-license-manifesto.html), which I wholeheartedly agree with:
 
@@ -92,7 +92,7 @@ I must also bring up [boringcactus's Anti-License Manifesto](https://www.boringc
 >
 > we cannot software license our way to a better world. as such, we should and must software license our way to a stranger world. permissive licenses and copyleft licenses are both tools of the corporate status quo. we therefore reject all conventional software licenses, and instead champion the weird, the experimental, the decorative, the hostile, the absurd, the useless, the straight up unhinged.
 
-</tangent>
+</ili-tangent>
 
 ## What does a Linux distribution do, exactly?
 
@@ -107,11 +107,11 @@ The groups of people who build and maintain Linux distributions have many goals,
 
 And so, being a Linux distribution maintainer involves a _lot_ of reading software licenses and asking lawyers about them, if you're lucky enough to have lawyers. The bureaucracy of Linux distros is overwhelming, and requires [writing policy manuals](https://www.debian.org/doc/debian-policy/), [providing legal guidelines](https://docs.fedoraproject.org/en-US/legal/), and [building automation](https://github.com/bottlerocket-os/bottlerocket-sdk/tree/develop/license-scan) to make what is usually a volunteer-driven system work at all (and licensing is somehow one of the least complex topics in distribution development).
 
-<tangent>
+<ili-tangent>
 
 Remember our earlier tangent about [anti-licenses](https://www.boringcactus.com/2021/09/29/anti-license-manifesto.html)? Linux distributions usually wish to avoid preventing the corporate status quo from being unable to use parts of their distros, and as a policy disallow these sorts of licenses. After all, many of the most popular Linux distributions are _built by_ the corporate status quo.
 
-</tangent>
+</ili-tangent>
 
 ## Rigid systems are resistant to change
 
@@ -122,13 +122,13 @@ Go and other languages[^rust] that statically compile dependencies prove to be d
 
 It is becoming more difficult each day to keep an eye on the license of every single piece of software that gets slurped into a distribution. Automation helps, but is expensive to write and maintain, and every ecosystem is subtly different with so, so many exceptions to the rules. For more popular distributions (such as Debian and Fedora) that ultimately feed into ecosystems that are sold to customers (such as Ubuntu and RHEL), policies and guidelines help, but other distributions might not have (or want!) the procedures necessary to ensure what they ship is properly licensed.
 
-<tangent>
+<ili-tangent>
 
 Another thing that makes statically-compiled languages difficult: attribution. Linux packagers tend to distribute the original license information with the package; many licenses require attribution or notice of some kind, and it's easiest to just ship every license with the software than figure out which ones you actually need to ship. But if you install, say, `ripgrep`[^ripgrep] or `docker`, you aren't installing the dozens of dependency packages, because they're just source code you don't need. You're also not installing the attribution notices for those dependencies, which you also don't need, but are often required to be distributed with copies of the software. Oops.
 
 [^ripgrep]: ripgrep depends on both `atty` and `strsim`, libraries that [are](https://github.com/softprops/atty/blob/6633c0e1446aa19e6cd00e00e39770da43081bda/LICENSE) [licensed](https://github.com/dguo/strsim-rs/blob/65eac453cbd10ba4e13273002c843e95c81ae93f/LICENSE) only under the MIT License, which requires the _copyright notice_ (the part with someone's name in it) is included in all copies of the software; their copyright notices are nowhere to be found on my Debian system with ripgrep installed. (I'm not picking on ripgrep arbitrarily; it just happens to be the single static-binary-ecosystem case I'm aware of that's installed on all my systems.)
 
-</tangent>
+</ili-tangent>
 
 So. Where did these systems succeed?
 
@@ -153,8 +153,8 @@ The larger distros with a focus on making redistribution painless are not shippi
 
 Distros can mitigate the issue by removing the code review functionality from the CLI. Anybody could take a better-licensed unified diff parser and add comment support to replace the unlicensed code. Or nothing could happen at all, and it would probably be fine.
 
-<callout>
+<ili-callout>
 
 _If you liked this writing, you can support me writing more things through [my GitHub Sponsors page](https://github.com/sponsors/iliana). Thanks for your consideration!_
 
-</callout>
+</ili-callout>

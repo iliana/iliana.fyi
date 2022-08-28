@@ -47,8 +47,8 @@
 
     /* round accented blocks */
     pre,
-    callout,
-    tangent {
+    ili-callout,
+    ili-tangent {
       @apply border border-accent-300/50 bg-accent-200/20 dark:border-accent-700/50 dark:bg-accent-800/20;
 
       & + section[data-footnotes] {
@@ -62,8 +62,8 @@
     }
 
     /* round accented blocks that are custom elements and need spacing defined */
-    callout,
-    tangent {
+    ili-callout,
+    ili-tangent {
       @apply my-6 block rounded-md px-4 py-3 lg:my-8 lg:px-6 lg:py-4 xl:my-9 xl:rounded-lg xl:py-5 2xl:my-10 2xl:px-8 2xl:py-6;
 
       > {
@@ -71,7 +71,7 @@
       }
     }
 
-    tangent {
+    ili-tangent {
       @accent pink;
       @apply relative mt-10 border-dashed lg:mt-12 xl:mt-14;
 
@@ -86,19 +86,19 @@
         @apply absolute left-4 text-xs italic leading-none text-accent-600 dark:text-accent-400 lg:left-6 lg:text-sm lg:leading-none xl:text-base xl:leading-none 2xl:left-8 2xl:text-lg 2xl:leading-none;
       }
 
-      > tangent {
+      > ili-tangent {
         @apply bg-accent-200/10 dark:bg-accent-800/10;
       }
 
-      > tangent:before {
+      > ili-tangent:before {
         content: "the cotangent zone";
       }
 
-      > tangent > tangent:before {
+      > ili-tangent > ili-tangent:before {
         content: "the \201cwhat was i talking about again\201d\0020zone";
       }
 
-      > tangent > tangent > tangent:before {
+      > ili-tangent > ili-tangent > ili-tangent:before {
         content: "<!-- FIXME(iliana): refactor blog post -->";
       }
     }
@@ -122,8 +122,8 @@
     }
   }
 
-  .prose callout,
-  .prose tangent,
+  .prose ili-callout,
+  .prose ili-tangent,
   section[data-footnotes] {
     @apply prose-sm lg:prose-base xl:prose-lg 2xl:prose-xl;
   }
