@@ -17,8 +17,8 @@
 /* eslint no-unused-vars: ["error", { "varsIgnorePattern": "(MoonIcon|SunIcon|h)" }] */
 /* global document, window */
 
-import MoonIcon from "heroicons/outline/moon.svg";
-import SunIcon from "heroicons/outline/sun.svg";
+import MoonIcon from "heroicons/24/outline/moon.svg";
+import SunIcon from "heroicons/24/outline/sun.svg";
 import { h } from "./xieact";
 
 try {

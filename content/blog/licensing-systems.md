@@ -118,7 +118,6 @@ Remember our earlier tangent about [anti-licenses](https://www.boringcactus.com/
 Go and other languages[^rust] that statically compile dependencies prove to be difficult for many Linux distributions. A lot of distribution maintainers suggest that [static linking creates security issues down the road](https://blogs.gentoo.org/mgorny/2021/02/19/the-modern-packagers-security-nightmare/), but this is really a tertiary problem; the explosive dependency trees, including using multiple versions of the same package at once, break the assumptions that Linux distributions made in past eras[^compat]. Perl and Python packaging are difficult, and the npm, Go, and Rust ecosystems exacerbate the fragility of Linux distribution infrastructure even further.
 
 [^rust]: Yes, this includes Rust.
-
 [^compat]: Except... were those even good assumptions? I've spent far too many days of my life building packages to keep binaries that linked against older shared libraries.
 
 It is becoming more difficult each day to keep an eye on the license of every single piece of software that gets slurped into a distribution. Automation helps, but is expensive to write and maintain, and every ecosystem is subtly different with so, so many exceptions to the rules. For more popular distributions (such as Debian and Fedora) that ultimately feed into ecosystems that are sold to customers (such as Ubuntu and RHEL), policies and guidelines help, but other distributions might not have (or want!) the procedures necessary to ensure what they ship is properly licensed.

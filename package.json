@@ -5,7 +5,7 @@
     "fix": "prettier -w . && eslint --ext .js,.jsx --fix ."
   },
   "dependencies": {
-    "@11ty/eleventy": "^2.0.0-canary.14",
+    "@11ty/eleventy": "^2.0.0-canary.15",
     "@11ty/eleventy-img": "^2.0.1",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
@@ -19,7 +19,7 @@
     "fast-glob": "^3.2.11",
     "hast-util-select": "^5.0.2",
     "hast-util-to-string": "^2.0.0",
-    "heroicons": "^1.0.6",
+    "heroicons": "^2.0.8",
     "html-minifier": "^4.0.0",
     "inter-ui": "^3.19.3",
     "ionicons": "^6.0.1",
