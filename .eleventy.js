@@ -104,6 +104,7 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addExtension("md", {
     init: async () => {
       const { unified } = await import("unified");
+      const { selectAll } = await import("hast-util-select");
       this.pipeline = unified()
         .use((await import("remark-parse")).default)
         .use((await import("remark-smartypants")).default)
@@ -111,6 +112,12 @@ module.exports = (eleventyConfig) => {
         .use((await import("remark-rehype")).default, { allowDangerousHtml: true })
         .use((await import("rehype-raw")).default)
         .use(rehypeMultiShikiDrifting, { themes: { dark: "github-dark", light: "github-light" } })
+        .use(() => async (tree) => {
+          selectAll("ili-callout, ili-tangent", tree).forEach((node) => {
+            // eslint-disable-next-line no-param-reassign
+            node.properties.role = "note";
+          });
+        })
         .use((await import("rehype-stringify")).default);
     },
     compile: (input) => async () => this.pipeline.process(input),
