@@ -24,7 +24,9 @@ const { promisify } = require("util");
 const fg = require("fast-glob");
 
 async function subset(content) {
-  const chars = new Set(`${String.fromCharCode(...Array(0x80).keys())}\u00a0–—‘’“”`);
+  const chars = new Set(
+    `${String.fromCharCode(...Array(0x80).keys())}\u00a0\u2013\u2014\u2018\u2019\u201c\u201d\u2026\u21a9`
+  );
   const files = fg.stream(["content/**/*.{html,md}", "src/**/*.{css,js,jsx}"], { cwd: path.join(__dirname, "..") });
   for await (const file of files) {
     const data = await fs.readFile(path.join(__dirname, "..", file), { encoding: "utf8" });
