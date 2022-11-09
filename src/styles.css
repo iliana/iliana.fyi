@@ -30,6 +30,11 @@
     --hl-italic-dark: normal;
     --hl-bold-dark: normal;
     --hl-underline-dark: none;
+    color-scheme: light;
+
+    @media (prefers-color-scheme: dark) {
+      color-scheme: dark;
+    }
   }
 
   * {
