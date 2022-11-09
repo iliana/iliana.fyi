@@ -26,9 +26,15 @@ const select = (
     id="theme-selector"
     class="absolute h-full w-full cursor-pointer appearance-none bg-transparent text-base text-transparent"
   >
-    <option value="light">Light theme</option>
-    <option value="dark">Dark theme</option>
-    <option value="system">System theme</option>
+    <option class="bg-inherit text-inherit" value="light">
+      Light theme
+    </option>
+    <option class="bg-inherit text-inherit" value="dark">
+      Dark theme
+    </option>
+    <option class="bg-inherit text-inherit" value="system">
+      System theme
+    </option>
   </select>
 );
 
