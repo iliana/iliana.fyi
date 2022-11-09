@@ -67,7 +67,7 @@ eleventyExcludeFromCollections: true
         <span class="sr-only">: </span>
       </p>
       {% if post.data.where %}
-      <div class="prose">{{ post.templateContent | safe }}</div>
+      <div class="prose first:[&>*]:mt-0 last:[&>*]:mb-0">{{ post.templateContent | safe }}</div>
       {% else %}
       <div class="prose prose-a:font-extrabold">
         <a href="{{ post.url }}">{{ post.data.title | safe }}</a>
