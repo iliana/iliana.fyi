@@ -24,7 +24,7 @@
 //    elements as well.
 
 function apply(element, [, data, ...children]) {
-  // (there is no prototype chain to iterate over in `data`)
+  // (`data` is a plain object, so there is no prototype chain to iterate over; these lints do not apply)
   // eslint-disable-next-line guard-for-in, no-restricted-syntax
   for (const key in data) {
     element.setAttribute(key, data[key]);
