@@ -99,7 +99,8 @@ function rehypeMultiShikiDrifting({ themes }) {
 }
 
 module.exports = (eleventyConfig) => {
-  eleventyConfig.addPassthroughCopy({ dist: "dist" });
+  ["jpg", "png", "txt"].forEach((ext) => eleventyConfig.addPassthroughCopy(`content/blog/**/*.${ext}`));
+  eleventyConfig.addPassthroughCopy("dist");
   eleventyConfig.addPassthroughCopy({ static: "." });
   eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
 
