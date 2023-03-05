@@ -22,6 +22,8 @@ const htmlmin = require("html-minifier");
 const { optimize } = require("svgo");
 const resolveConfig = require("tailwindcss/resolveConfig");
 
+dayjs.extend(require("dayjs/plugin/utc"));
+
 function rehypeMultiShikiDrifting({ themes }) {
   const highlightersPromise = import("shiki").then(({ getHighlighter }) =>
     Promise.all(
@@ -161,7 +163,9 @@ module.exports = (eleventyConfig) => {
 
   // date formatting a la tera
   eleventyConfig.addNunjucksFilter("date", (value, formatString) =>
-    dayjs(value).format(formatString ?? "YYYY-MM-DDTHH:mm:ssZ")
+    dayjs(value)
+      .utc()
+      .format(formatString ?? "YYYY-MM-DDTHH:mm:ssZ")
   );
 
   // SVG icon loader, with svgo. this should be async but you can't use async shortcodes in macros
