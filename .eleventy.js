@@ -99,6 +99,7 @@ function rehypeMultiShikiDrifting({ themes }) {
 module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy({ dist: "dist" });
   eleventyConfig.addPassthroughCopy({ static: "." });
+  eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
 
   // use unified to process our markdown content
   eleventyConfig.addExtension("md", {

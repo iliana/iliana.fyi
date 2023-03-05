@@ -1,11 +1,11 @@
 {
   "scripts": {
-    "build": "NODE_ENV=production webpack && eleventy --passthroughall",
-    "dev": "concurrently --kill-others \"eleventy --passthroughall --serve\" \"webpack --watch\"",
+    "build": "NODE_ENV=production webpack && eleventy",
+    "dev": "concurrently --kill-others \"eleventy --serve\" \"webpack --watch\"",
     "fix": "prettier -w . && eslint --ext .js,.jsx --fix ."
   },
   "dependencies": {
-    "@11ty/eleventy": "^2.0.0-canary.15",
+    "@11ty/eleventy": "^2.0.0",
     "@11ty/eleventy-img": "^2.0.1",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
@@ -33,7 +33,7 @@
     "remark-parse": "^10.0.1",
     "remark-rehype": "^10.1.0",
     "remark-smartypants": "^2.0.0",
-    "shiki": "^0.10.1",
+    "shiki": "^0.14.1",
     "svgo": "^3.0.0",
     "tailwindcss": "^3.0.23",
     "unified": "^10.1.2",
