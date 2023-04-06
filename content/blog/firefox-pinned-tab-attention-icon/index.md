@@ -26,7 +26,7 @@ Once you have a userChrome.css file[^namespace], you can put this in it:
 }
 ```
 
-[^namespace]: Note that this will not work if you have `@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);` in your userChrome.css, because this rule affects browser styles created via HTML. [There is no XUL, only HTML.](http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul)
+[^namespace]: Note that this will not work if you have `@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);` in your userChrome.css, because this rule affects browser styles created via HTML. [There is no XUL, only HTML.](https://crisal.io/words/2023/03/30/xul-layout-is-gone.html)
 
 Restart Firefox, and never see the tab light again.
 
