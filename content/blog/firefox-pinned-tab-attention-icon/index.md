@@ -1,6 +1,7 @@
 ---
 title: "Disabling the “title changed” light on Firefox pinned tabs"
 date: 2023-04-06T12:00:00-07:00
+updated: 2023-06-13T12:00:00-07:00
 ---
 
 <ili-callout>
