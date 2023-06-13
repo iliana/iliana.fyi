@@ -3,6 +3,12 @@ title: "Disabling the “title changed” light on Firefox pinned tabs"
 date: 2023-04-06T12:00:00-07:00
 ---
 
+<ili-callout>
+
+**Updated June 13, 2023**: Firefox 114 broke my original fix; I've updated the solution below with the more tried-and-true approach.
+
+</ili-callout>
+
 Webmail and chat clients often change the page title to tell you if you have unread messages and get your attention. If you pin these tabs in Firefox, the page title is hidden. To ensure pages can still get your attention, Firefox displays a little light under the favicon when the title changes. It looks like this:[^contrast]
 
 [^contrast]: I'm using Firefox on macOS with "Increase contrast" enabled, so the light is (unfortunately for me) brighter.
@@ -21,8 +27,8 @@ Here are some steps to create a userChrome.css file:
 Once you have a userChrome.css file[^namespace], you can put this in it:
 
 ```css
-:root {
-  --lwt-tab-attention-icon-color: transparent;
+.tab-stack > .tab-content[pinned][titlechanged] {
+  background-image: none !important;
 }
 ```
 
@@ -30,4 +36,6 @@ Once you have a userChrome.css file[^namespace], you can put this in it:
 
 Restart Firefox, and never see the tab light again.
 
-There are several ways to do this; I chose this way because it sets a CSS variable that can be set by browser themes to override the tab color, which seems less fragile than ever-changing selectors. If this doesn't work for you, you can [try the selector-based approach](https://support.mozilla.org/en-US/questions/1181537) (this approach lets you disable it based on other inputs as well, such as the tab title). You can find [the relevant CSS in the Firefox source tree](https://hg.mozilla.org/mozilla-central/file/tip/browser/themes/shared/tabs.css).
+~~There are several ways to do this; I chose this way because it sets a CSS variable that can be set by browser themes to override the tab color, which seems less fragile than ever-changing selectors. If this doesn't work for you, you can [try the selector-based approach](https://support.mozilla.org/en-US/questions/1181537) (this approach lets you disable it based on other inputs as well, such as the tab title).~~ **Updated June 13, 2023**: [Oh, the irony.](https://bugzilla.mozilla.org/show_bug.cgi?id=1815900)
+
+You can find [the relevant CSS in the Firefox source tree](https://hg.mozilla.org/mozilla-central/file/tip/browser/themes/shared/tabs.css).
