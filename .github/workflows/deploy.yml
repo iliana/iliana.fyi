@@ -8,9 +8,13 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
-      - uses: tailscale/github-action@e870a1112fcc1faeeeeea3c1b0ce544e5ad01844
+      - uses: tailscale/github-action@8b804aa882ac3429b804a2a22f9803a2101a0db9
+        env:
+          TS_EXPERIMENT_OAUTH_AUTHKEY: true
         with:
-          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+          authkey: '${{ secrets.TS_OAUTH_CLIENT_SECRET }}'
+          version: 1.42.0
+          args: --advertise-tags tag:www-deploy
 
       - run: mkdir ~/.ssh
       - run: tailscale status --json | jq -r '.Peer[] | . as $peer | select(.sshHostKeys) | .sshHostKeys[] | $peer.HostName + " " + .' > ~/.ssh/known_hosts
