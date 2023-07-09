@@ -1,0 +1,22 @@
+# Ceci n'est pas une licence
+(GitHub variant, version 1)
+
+This is not a license.
+
+Copyright (c) [YOUR NAME]. All rights reserved.
+
+Because this software was published on GitHub, you have
+already been granted a limited license in the GitHub Terms
+of Service. See "License Grant to Other Users" on
+<https://docs.github.com/en/site-policy/github-terms/github-terms-of-service>.
+
+The author welcomes you to contact them about relicensing
+subsets of the software for use in other projects.
+
+***As far as the law allows, this software comes as is,
+without any warranty or condition, and no contributor
+will be liable to anyone for any damages related to this
+software or this license, under any kind of legal claim.***
+
+(To use this document for your code, see
+<https://iliana.fyi/treachery/>.)
