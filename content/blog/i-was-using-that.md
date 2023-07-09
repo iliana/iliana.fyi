@@ -23,7 +23,6 @@ instead of this now-broken userChrome.css:
 When I restarted Firefox today, it updated to version 114, and I immediately noticed that my old CSS had failed me. A quick dig into mozilla-central revealed that they removed[^1] `--lwt-tab-attention-icon-color` because it "was added for colorways and won't be needed going forward".[^2]
 
 [^1]: The commit landed two weeks after my blog post, but the bug has been open since February. This is comforting to the part of my brain that briefly believed someone read my blog post and decided to break my workflow.
-
 [^2]: I am not linking the bug because I don't want an extremely trivial route for people reading this blog to go add unwanted noise to the bug tracker. That's not helpful to anyone.
 
 This is, of course, frustrating. It's frustrating because I dug through the CSS to find this, which I believed to be "less fragile than ever-changing selectors", hilariously enough. It's frustrating that Firefox developers spent however much time on Colorways for it to be [axed earlier this year](https://support.mozilla.org/en-US/kb/personalize-firefox-colorways). Most of all, I think it's frustrating that userChrome.css is the only path I have to make this browser work for my needs.
