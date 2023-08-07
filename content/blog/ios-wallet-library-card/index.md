@@ -3,7 +3,7 @@ title: Getting my library cards onto my phone the hard way
 date: 2023-08-06T12:00:00-07:00
 ---
 
-Our local libraries, The Seattle Public Library and the King County Library System, issue pieces of plastic with barcodes printed on the back assigned to your borrower account. These cards are rarely needed in 2023; most everything at Seattle libraries is self-service, including circulation, and these self-service entrypoints usually have a way to type in a library barcode manually. But I'd prefer to have the barcode handy for convenience, without needing to keep yet another plastic card I rarely need in my wallet.
+Our local libraries, The Seattle Public Library and the King County Library System, issue pieces of plastic with barcodes printed on the back assigned to your borrower account. These cards are not _strictly_ necessary in 2023; most everything at Seattle libraries is self-service, including circulation, and these self-service entrypoints usually have a way to type in a library barcode manually. But having the barcode is far more convenient, and I'd like to have it without having to keep yet another plastic card I rarely use in my wallet.
 
 So I put it on my phone, in my iPhone's Wallet app. This became extremely silly extremely quickly, so I've decided to document it here for myself and others.
 
