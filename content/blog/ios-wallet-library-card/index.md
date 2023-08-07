@@ -19,7 +19,7 @@ Our first interesting problem is one of barcode formats. Passes support four typ
 
 [^blood]: And blood banks?
 
-Our second interesting problem, which is a much worse, "oh no"-level problem: for some reason, passes are cryptographically signed, and they have to be signed with a key known to one of Apple's certificate authorities. Cryptographically signing these files makes some sense when you consider that passes were designed to get automatic updates from their vendors; for example, your boarding pass for a flight reflecting gate changes or changing your seat assignment. 
+Our second interesting problem, which is a much worse, "oh no"-level problem: for some reason, passes are cryptographically signed, and they have to be signed with a key known to one of Apple's certificate authorities. Cryptographically signing these files makes some sense when you consider that passes were designed to get automatic updates from their vendors; for example, your boarding pass for a flight reflecting gate changes or changing your seat assignment.
 
 If you are already an Apple developer you can get yourself a pass signing key pretty trivially, but I am not, and I do not intend to drop $99 on this.
 

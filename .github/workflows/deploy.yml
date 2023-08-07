@@ -12,7 +12,7 @@ jobs:
         env:
           TS_EXPERIMENT_OAUTH_AUTHKEY: true
         with:
-          authkey: '${{ secrets.TS_OAUTH_CLIENT_SECRET }}'
+          authkey: "${{ secrets.TS_OAUTH_CLIENT_SECRET }}"
           version: 1.42.0
           args: --advertise-tags tag:www-deploy
 
