@@ -26,4 +26,4 @@ jobs:
         env:
           NODE_ENV: production
       - run: npm run build
-      - run: rsync -av --checksum --delete-after --omit-dir-times public/ www-deploy@hydrangea:/srv/iliana.fyi/
+      - run: rsync -av --checksum --delete-after --omit-dir-times public/ www-deploy@hydrangea:/var/www/iliana.fyi/
