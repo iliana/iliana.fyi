@@ -5,7 +5,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: tailscale/github-action@8b804aa882ac3429b804a2a22f9803a2101a0db9
@@ -26,4 +26,4 @@ jobs:
         env:
           NODE_ENV: production
       - run: npm run build
-      - run: rsync -av --checksum --delete-after --omit-dir-times public/ www-deploy@dreamweaver:/srv/iliana.fyi/
+      - run: rsync -av --checksum --delete-after --omit-dir-times public/ www-deploy@hydrangea:/srv/iliana.fyi/
