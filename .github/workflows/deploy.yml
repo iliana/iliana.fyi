@@ -16,21 +16,23 @@ jobs:
           version: 1.42.0
           args: --advertise-tags tag:www-deploy
 
-      - run: |
+      - name: Build
+        run: |
+          pipx install fonttools
+          pipx inject fonttools brotli
+          NODE_ENV=production npm ci
+          npm run build
+
+      - name: Set up SSH agent
+        run: |
           eval `ssh-agent -s`
           echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >>"$GITHUB_ENV"
           ssh-add - <<<"SSH_PRIVATE_KEY"
         env:
-          SSH_PRIVATE_KEY: "${{ secrets.SSH_PRIVATE_KEY }}"
+          SSH_PRIVATE_KEY: '${{ secrets.SSH_PRIVATE_KEY }}'
 
-      - run: |
-          set -x
+      - name: Deploy
+        run: |
           mkdir ~/.ssh
           cp .github/workflows/known_hosts ~/.ssh/known_hosts
-
-          pipx install fonttools
-          pipx inject fonttools brotli
-
-          NODE_ENV=production npm ci
-          npm run build
           rsync -av --checksum --delete-after --omit-dir-times public/ www-deploy@hydrangea:/var/www/iliana.fyi/
