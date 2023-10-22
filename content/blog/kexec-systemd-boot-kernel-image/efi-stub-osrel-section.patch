@@ -1,0 +1,113 @@
+From c2daf556d7a8ae3643937196dacb5bdba9590680 Mon Sep 17 00:00:00 2001
+From: iliana etaoin <iliana@buttslol.net>
+Date: Sun, 22 Oct 2023 02:58:13 +0000
+Subject: [PATCH] Add .osrel section to EFI stub image
+
+Signed-off-by: iliana etaoin <iliana@buttslol.net>
+---
+ arch/x86/boot/header.S      | 21 +++++++++++++++++++++
+ arch/x86/boot/tools/build.c | 20 ++++++++++++++++++--
+ 2 files changed, 39 insertions(+), 2 deletions(-)
+
+diff --git a/arch/x86/boot/header.S b/arch/x86/boot/header.S
+index f912d7770130..3a50d4f28dfc 100644
+--- a/arch/x86/boot/header.S
++++ b/arch/x86/boot/header.S
+@@ -232,6 +232,27 @@ section_table:
+ 		IMAGE_SCN_MEM_DISCARDABLE	| \
+ 		IMAGE_SCN_ALIGN_1BYTES		# Characteristics
+ 
++	#
++	# systemd-boot requires an .osrel section containing the
++	# contents of /etc/os-release. The .osrel offset & size
++	# fields are filled in by build.c.
++	#
++	.ascii	".osrel"
++	.byte	0
++	.byte	0
++	.long	0
++	.long	0
++	.long	0				# SizeOfRawData
++	.long	0				# PointerToRawData
++	.long	0				# PointerToRelocations
++	.long	0				# PointerToLineNumbers
++	.word	0				# NumberOfRelocations
++	.word	0				# NumberOfLineNumbers
++	.long	IMAGE_SCN_CNT_INITIALIZED_DATA	| \
++		IMAGE_SCN_MEM_READ		| \
++		IMAGE_SCN_MEM_DISCARDABLE	| \
++		IMAGE_SCN_ALIGN_1BYTES		# Characteristics
++
+ #ifdef CONFIG_EFI_MIXED
+ 	#
+ 	# The offset & size fields are filled in by build.c.
+diff --git a/arch/x86/boot/tools/build.c b/arch/x86/boot/tools/build.c
+index a3725ad46c5a..f2bc3901108c 100644
+--- a/arch/x86/boot/tools/build.c
++++ b/arch/x86/boot/tools/build.c
+@@ -52,6 +52,7 @@ typedef unsigned int   u32;
+ u8 buf[SETUP_SECT_MAX*512];
+ 
+ #define PECOFF_RELOC_RESERVE 0x20
++#define PECOFF_OSREL_RESERVE 0x100
+ 
+ #ifdef CONFIG_EFI_MIXED
+ #define PECOFF_COMPAT_RESERVE 0x20
+@@ -198,9 +199,10 @@ static void update_pecoff_section_header(char *section_name, u32 offset, u32 siz
+ static void update_pecoff_setup_and_reloc(unsigned int size)
+ {
+ 	u32 setup_offset = 0x200;
+-	u32 reloc_offset = size - PECOFF_RELOC_RESERVE - PECOFF_COMPAT_RESERVE;
++	u32 reloc_offset = size - PECOFF_RELOC_RESERVE - PECOFF_OSREL_RESERVE - PECOFF_COMPAT_RESERVE;
++	u32 osrel_offset = reloc_offset + PECOFF_RELOC_RESERVE;
+ #ifdef CONFIG_EFI_MIXED
+-	u32 compat_offset = reloc_offset + PECOFF_RELOC_RESERVE;
++	u32 compat_offset = osrel_offset + PECOFF_OSREL_RESERVE;
+ #endif
+ 	u32 setup_size = reloc_offset - setup_offset;
+ 
+@@ -214,6 +216,8 @@ static void update_pecoff_setup_and_reloc(unsigned int size)
+ 	put_unaligned_le32(reloc_offset + 10, &buf[reloc_offset]);
+ 	put_unaligned_le32(10, &buf[reloc_offset + 4]);
+ 
++	update_pecoff_section_header(".osrel", osrel_offset, PECOFF_OSREL_RESERVE);
++
+ #ifdef CONFIG_EFI_MIXED
+ 	update_pecoff_section_header(".compat", compat_offset, PECOFF_COMPAT_RESERVE);
+ 
+@@ -275,6 +279,12 @@ static int reserve_pecoff_reloc_section(int c)
+ 	return PECOFF_RELOC_RESERVE;
+ }
+ 
++static int reserve_pecoff_osrel_section(int c)
++{
++	memset(buf+c, 0, PECOFF_OSREL_RESERVE);
++	return PECOFF_OSREL_RESERVE;
++}
++
+ static void efi_stub_defaults(void)
+ {
+ 	/* Defaults for old kernel */
+@@ -315,6 +325,11 @@ static inline int reserve_pecoff_reloc_section(int c)
+ {
+ 	return 0;
+ }
++
++static inline int reserve_pecoff_osrel_section(int c)
++{
++	return 0;
++}
+ #endif /* CONFIG_EFI_STUB */
+ 
+ static int reserve_pecoff_compat_section(int c)
+@@ -402,6 +417,7 @@ int main(int argc, char ** argv)
+ 	fclose(file);
+ 
+ 	c += reserve_pecoff_compat_section(c);
++	c += reserve_pecoff_osrel_section(c);
+ 	c += reserve_pecoff_reloc_section(c);
+ 
+ 	/* Pad unused space with zeros */
+-- 
+2.30.2
+

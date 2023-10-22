@@ -1,7 +1,7 @@
 const typography = require("@tailwindcss/typography");
 
 module.exports = {
-  content: [".eleventy.js", "./content/**/*.html", "./src/**/*.{js,jsx}"],
+  content: [".eleventy.js", "./content/**/*.{html,md}", "./src/**/*.{js,jsx}"],
   theme: {
     fontFamily: {
       sans: ["Inter var", "sans-serif"],
@@ -17,6 +17,8 @@ module.exports = {
           css: {
             "--tw-prose-links": "rgb(var(--color-accent-600))",
             "--tw-prose-invert-links": "rgb(var(--color-accent-400))",
+            "code::before": { content: "none" },
+            "code::after": { content: "none" },
           },
         },
       },

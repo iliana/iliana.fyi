@@ -29,7 +29,7 @@ jobs:
           echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >>"$GITHUB_ENV"
           echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
         env:
-          SSH_PRIVATE_KEY: '${{ secrets.SSH_PRIVATE_KEY }}'
+          SSH_PRIVATE_KEY: "${{ secrets.SSH_PRIVATE_KEY }}"
 
       - name: Deploy
         run: |
