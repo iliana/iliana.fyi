@@ -9,20 +9,23 @@ eleventyExcludeFromCollections: true
   <title>iliana.fyi</title>
   <subtitle>iliana’s blog</subtitle>
   <link href="{{ permalink | absolute }}" rel="self" type="application/atom+xml" />
-  <link href="{{ "/" | absolute }}" />
+  <link href="{{ '/' | absolute }}" rel="alternate" type="application/html" />
   <updated>{{ collections.all.at(-1).date | date }}</updated>
   <id>{{ permalink | absolute }}</id>
   {% for post in collections.all | reverse %}
   <entry>
     <title>{{ post.data.title | striptags }}</title>
+    <author>
+      <name>iliana etaoin</name>
+    </author>
     <published>{{ post.date | date }}</published>
     <updated>{{ post.data.updated | default(post.date) | date }}</updated>
     <link href="{{ post.data.link | default(post.url) | absolute }}" rel="alternate" type="text/html" />
     <id>{{ post.url | absolute }}</id>
-    {% if post.data.where %}
-    <summary type="html">{{ post.templateContent }}</summary>
+    {% if post.data.link %}
+    <summary type="html" xml:base="{{ post.url | absolute }}">{{ post.templateContent }}</summary>
     {% else %}
-    <content type="html">{{ post.templateContent }}</content>
+    <content type="html" xml:base="{{ post.url | absolute }}">{{ post.templateContent }}</content>
     {% endif %}
   </entry>
   {% endfor %}
