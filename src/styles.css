@@ -43,6 +43,7 @@
 
   a {
     @apply font-medium text-accent-600 underline dark:text-accent-400;
+    @apply break-words;
   }
 }
 
