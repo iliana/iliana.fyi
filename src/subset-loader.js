@@ -25,7 +25,7 @@ const fg = require("fast-glob");
 
 async function subset(content) {
   const chars = new Set(
-    `${String.fromCharCode(...Array(0x80).keys())}\u00a0\u2013\u2014\u2018\u2019\u201c\u201d\u2026\u21a9`
+    `${String.fromCharCode(...Array(0x7f).keys())}\u00a0\u2013\u2014\u2018\u2019\u201c\u201d\u2026\u21a9`,
   );
   const files = fg.stream(["content/**/*.{html,md}", "src/**/*.{css,js,jsx}"], { cwd: path.join(__dirname, "..") });
   for await (const file of files) {
@@ -38,7 +38,11 @@ async function subset(content) {
   await promisify(execFile)("pyftsubset", [
     path.join(dir, "font.woff2"),
     "--flavor=woff2",
-    `--unicodes=${[...chars].map((c) => `U+${c.codePointAt(0).toString(16)}`).join(",")}`,
+    `--unicodes=${[...chars]
+      .filter((c) => c.codePointAt(0) >= 0x20)
+      .map((c) => `U+${c.codePointAt(0).toString(16)}`)
+      .join(",")}`,
+    "--no-ignore-missing-unicodes",
     `--layout-features=locl,kern,cv05,cv08,ss03,case`,
   ]);
   const subsetted = await fs.readFile(path.join(dir, "font.subset.woff2"));

@@ -8,7 +8,11 @@
     font-weight: 100 900;
     font-style: normal;
     font-display: swap;
-    font-feature-settings: "calt" off, "cv05" on, "cv08" on, "ss03" on;
+    font-feature-settings:
+      "calt" off,
+      "cv05" on,
+      "cv08" on,
+      "ss03" on;
     src: url("inter-ui/Inter (web)/Inter-roman.var.woff2") format("woff2");
   }
 
@@ -17,7 +21,11 @@
     font-weight: 100 900;
     font-style: italic;
     font-display: swap;
-    font-feature-settings: "calt" off, "cv05" on, "cv08" on, "ss03" on;
+    font-feature-settings:
+      "calt" off,
+      "cv05" on,
+      "cv08" on,
+      "ss03" on;
     src: url("inter-ui/Inter (web)/Inter-italic.var.woff2") format("woff2");
   }
 

@@ -63,5 +63,5 @@ document.body.firstElementChild.prepend(
     {select}
     <SunIcon focusable={false} class="h-5 dark:hidden lg:h-6 xl:h-7" />
     <MoonIcon focusable={false} class="hidden h-5 dark:block lg:h-6 xl:h-7" />
-  </div>
+  </div>,
 );

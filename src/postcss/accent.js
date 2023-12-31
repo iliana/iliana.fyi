@@ -26,7 +26,7 @@ module.exports = () => ({
           new Declaration({
             prop: `--color-accent-${shade}`,
             value: [1, 3, 5].map((x) => parseInt(hex.slice(x, x + 2), 16)).join(" "),
-          })
+          }),
         );
       });
       rule.remove();

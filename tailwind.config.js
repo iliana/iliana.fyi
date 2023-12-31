@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       colors: ({ colors }) => ({
         accent: Object.fromEntries(
-          Object.keys(colors.violet).map((shade) => [shade, `rgb(var(--color-accent-${shade}) / <alpha-value>)`])
+          Object.keys(colors.violet).map((shade) => [shade, `rgb(var(--color-accent-${shade}) / <alpha-value>)`]),
         ),
       }),
       typography: {

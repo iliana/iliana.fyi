@@ -30,8 +30,8 @@ function rehypeMultiShikiDrifting({ themes }) {
       Object.entries(themes).map(async ([label, theme]) => ({
         label,
         highlighter: await getHighlighter({ theme }),
-      }))
-    )
+      })),
+    ),
   );
 
   return async (tree) => {
@@ -166,7 +166,7 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addNunjucksFilter("date", (value, formatString) =>
     dayjs(value)
       .utc()
-      .format(formatString ?? "YYYY-MM-DDTHH:mm:ssZ")
+      .format(formatString ?? "YYYY-MM-DDTHH:mm:ssZ"),
   );
 
   // SVG icon loader, with svgo. this should be async but you can't use async shortcodes in macros
@@ -212,7 +212,7 @@ module.exports = (eleventyConfig) => {
           })
           // fix footnote backref emojification
           .replace(/\u21a9/g, "\u21a9\ufe0e")
-      : content
+      : content,
   );
 
   return {
