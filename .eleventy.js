@@ -18,7 +18,7 @@ const fs = require("fs");
 const path = require("path");
 const Image = require("@11ty/eleventy-img");
 const dayjs = require("dayjs");
-const htmlmin = require("html-minifier");
+const htmlmin = require("html-minifier-terser");
 const { optimize } = require("svgo");
 const resolveConfig = require("tailwindcss/resolveConfig");
 
@@ -196,24 +196,24 @@ module.exports = (eleventyConfig) => {
   });
 
   // minify output HTML
-  eleventyConfig.addTransform("htmlmin", (content, outputPath) =>
-    outputPath && outputPath.endsWith(".html")
-      ? htmlmin
-          .minify(content, {
-            collapseBooleanAttributes: true,
-            collapseWhitespace: true,
-            decodeEntities: true,
-            removeAttributeQuotes: true,
-            removeComments: true,
-            removeOptionalTags: true,
-            sortAttributes: true,
-            sortClassName: true,
-            useShortDoctype: true,
-          })
-          // fix footnote backref emojification
-          .replace(/\u21a9/g, "\u21a9\ufe0e")
-      : content,
-  );
+  eleventyConfig.addTransform("htmlmin", async (content, outputPath) => {
+    if (!outputPath || !outputPath.endsWith(".html")) {
+      return content;
+    }
+    const minified = await htmlmin.minify(content, {
+      collapseBooleanAttributes: true,
+      collapseWhitespace: true,
+      decodeEntities: true,
+      removeAttributeQuotes: true,
+      removeComments: true,
+      removeOptionalTags: true,
+      sortAttributes: true,
+      sortClassName: true,
+      useShortDoctype: true,
+    });
+    // fix footnote backref emojification
+    return minified.replace(/\u21a9/g, "\u21a9\ufe0e");
+  });
 
   return {
     dir: {
